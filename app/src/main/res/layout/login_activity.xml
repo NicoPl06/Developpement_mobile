@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/login"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@color/black">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_marginStart="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/arrow"/>
+
+        <TextView
+            android:layout_marginStart="30dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/connectez_vous_banniere"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/identifiez_vous"
+            android:textSize="18sp"
+            android:textColor="@color/gris"/>
+
+        <LinearLayout
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_email"/>
+
+                <EditText
+                    android:paddingStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:textColor="@color/gris"
+                    android:id="@+id/Email"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_cadenas"/>
+
+                <EditText
+                    android:paddingStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mot_de_passe"
+                    android:textColor="@color/gris"
+                    android:id="@+id/MDP"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/white"
+            android:text="@string/mot_de_passe_oublie"
+            android:textColor="@color/bleu"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_marginStart="20dp"
+            android:layout_width="370dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/orange"
+            android:gravity="center"
+            android:text="@string/connectez_vous"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:cornerRadius="0dp"
+            android:onClick="login"
+            />
+
+        <LinearLayout
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:text="@string/nouveau_sur_jumia"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/cree_un_compte"
+                android:textColor="@color/bleu"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:backgroundTint="@color/white"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="60dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gris" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ou"
+                android:textSize="17sp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gris" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_facebook"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/continuer_avec_facebook"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/bleu"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bleu_waze"
+    android:id="@+id/main2">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_waze"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="450px"
+        >
+
+    </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="waze"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:textSize="180px"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="1180px"
+        android:textStyle="bold"
+        >
+
+    </TextView>
+
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="identifiez_vous">Iniciar sesión</string>
+    <string name="email">Correo electrónico</string>
+    <string name="mot_de_passe">Contraseña</string>
+    <string name="mot_de_passe_oublie">¿OLVIDASTE TU CONTRASEÑA?</string>
+    <string name="nouveau_sur_jumia">¿Nuevo en Jumia?</string>
+    <string name="cree_un_compte">CREAR UNA CUENTA</string>
+    <string name="ou">O</string>
+    <string name="continuer_avec_facebook">Continuar con Facebook</string>
+    <string name="connectez_vous">INICIAR SESIÓN</string>
+    <string name="connectez_vous_banniere">Iniciar sesión</string>
+    <string name="creer_un_compte">Crear una cuenta</string>
+    <string name="creer_un_nouveau_compte">Crear una nueva cuenta</string>
+    <string name="prenom">Nombre</string>
+    <string name="nom">Apellido</string>
+    <string name="mobile">Móvil</string>
+</resources>

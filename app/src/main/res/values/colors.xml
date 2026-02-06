@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bleu">#395184</color>
+    <color name="bleu_waze">#33CAFD</color>
+    <color name="orange">#FF9800</color>
+    <color name="gris">#6d6d6d</color>
+</resources>

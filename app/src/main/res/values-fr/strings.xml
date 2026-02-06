@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="identifiez_vous">Identifiez-vous</string>
+    <string name="email">Email</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="mot_de_passe_oublie">MOT DE PASSE OUBLIÉ ?</string>
+    <string name="nouveau_sur_jumia">Nouveau sur Jumia ?</string>
+    <string name="cree_un_compte">CRÉEZ UN COMPTE</string>
+    <string name="ou">OU</string>
+    <string name="continuer_avec_facebook">Continuer avec Facebook</string>
+    <string name="connectez_vous">CONNECTEZ-VOUS</string>
+    <string name="connectez_vous_banniere">Connectez-vous</string>
+    <string name="creer_un_compte">Créer un compte</string>
+    <string name="creer_un_nouveau_compte">Créer un nouveau compte</string>
+    <string name="prenom">Prénom</string>
+    <string name="nom">Nom</string>
+    <string name="mobile">Mobile</string>
+
+</resources>

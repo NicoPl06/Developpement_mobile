@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name" translatable="false">PowerHome</string>
+    <string name="app_name_waze" translatable="false">Waze</string>
+    <string name="app_name_login" translatable="false">Login</string>
+
+    <string name="identifiez_vous">Sign in</string>
+    <string name="email">Email</string>
+    <string name="mot_de_passe">Password</string>
+    <string name="mot_de_passe_oublie">FORGOT PASSWORD?</string>
+    <string name="nouveau_sur_jumia">New to Jumia?</string>
+    <string name="cree_un_compte">CREATE AN ACCOUNT</string>
+    <string name="ou">OR</string>
+    <string name="continuer_avec_facebook">Continue with Facebook</string>
+    <string name="connectez_vous">SIGN IN</string>
+    <string name="connectez_vous_banniere">Sign in</string>
+    <string name="creer_un_compte">Create an account</string>
+    <string name="creer_un_nouveau_compte">Create a new account</string>
+    <string name="prenom">First name</string>
+    <string name="nom">Last name</string>
+    <string name="e_mail" translatable="false">E-mail</string>
+    <string name="mobile">Mobile</string>
+
+
+    <string-array name="indicatifs">
+        <item>+33</item>
+        <item>+32</item>
+        <item>+49</item>
+        <item>+41</item>
+        <item>+1</item>
+        <item>+666</item>
+    </string-array>
+
+</resources>
