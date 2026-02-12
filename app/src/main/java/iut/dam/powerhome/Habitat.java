@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Habitat {
+
     int HabitatID;
     String ResidentName;
     int floor;
@@ -11,12 +12,12 @@ public class Habitat {
 
     List<Appliance> appliances = new ArrayList<>();
 
-    public Habitat(int id, String ResidentName, int floor, double area, Appliance appliance){
+
+    public Habitat(int id, String ResidentName, int floor, double area, List<Appliance> appliances) {
         this.HabitatID = id;
         this.ResidentName = ResidentName;
         this.floor = floor;
         this.area = area;
-
-        appliances.add(appliance);
+        this.appliances = appliances;
     }
 }
