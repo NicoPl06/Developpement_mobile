@@ -1,14 +1,23 @@
 package iut.dam.powerhome;
 
+import android.graphics.Color;
 import android.os.Bundle;
+
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
+
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +78,53 @@ public class HabitatActivity extends AppCompatActivity {
 
         habitants.setOnItemClickListener((parent, view, position, id) -> {
             Habitat h = items.get(position);
-            Toast.makeText(this, h.ResidentName, Toast.LENGTH_SHORT).show();
+
+            AlertDialog.Builder b = new AlertDialog.Builder(this);
+            b.setTitle(h.ResidentName);
+
+            LayoutInflater inflater = getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.dialog_habitat, null);
+
+            TextView txtSurface = dialogView.findViewById(R.id.txtSurface);
+            LinearLayout container = dialogView.findViewById(R.id.container);
+
+
+            txtSurface.setText("Surface : " + h.area + " m²");
+
+
+            for (Appliance a : h.appliances) {
+                View item = inflater.inflate(R.layout.item_appliance, container, false);
+                ImageView icon = item.findViewById(R.id.icon);
+                TextView txtName = item.findViewById(R.id.txtName);
+                TextView txtWatt = item.findViewById(R.id.txtWatt);
+                txtName.setText(a.Name);
+                txtWatt.setText(a.wattage + " W");
+                if (a.wattage < 100) {
+                    txtWatt.setTextColor(Color.parseColor("#FBC02D")); // Jaune
+                } else if (a.wattage < 150) {
+                    txtWatt.setTextColor(Color.parseColor("#FB8C00")); // Orange
+                } else {
+                    txtWatt.setTextColor(Color.parseColor("#D32F2F")); // Rouge
+                }
+
+                 switch (a.type) {
+                    case WASHING_MACHINE: icon.setImageResource(R.drawable.ic_washing_machine);
+                    break;
+
+                    case VACUUM: icon.setImageResource(R.drawable.ic_vacuum);
+                    break;
+
+                    case CLIM: icon.setImageResource(R.drawable.ic_clim);
+                    break;
+
+                    case IRON: icon.setImageResource(R.drawable.ic_iron);
+                    break;
+                }
+                container.addView(item);
+            }
+
+            b.setView(dialogView);
+            b.show();
         });
     }
 }
