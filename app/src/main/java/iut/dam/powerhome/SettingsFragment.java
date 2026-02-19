@@ -18,15 +18,12 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup c, Bundle b) {
         return inflater.inflate(R.layout.fragment_settings, c, false);
-
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button nightBtn = view.findViewById(R.id.night);
-        Button boldBtn = view.findViewById(R.id.bold);
 
         nightBtn.setOnClickListener(v -> {
             int current = AppCompatDelegate.getDefaultNightMode();
