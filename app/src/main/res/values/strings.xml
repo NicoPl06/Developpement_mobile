@@ -21,6 +21,11 @@
     <string name="mobile">Mobile</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="habitats">Habitats</string>
+    <string name="my_home">My home</string>
+    <string name="my_requests">My requests</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">Log out</string>
 
 
     <string-array name="indicatifs">

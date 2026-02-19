@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class StatsFragment extends Fragment {
+public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup c, Bundle b) {
-        return inflater.inflate(R.layout.fragments_stats, c, false);
+        return inflater.inflate(R.layout.fragment_home, c, false);
     }
 }

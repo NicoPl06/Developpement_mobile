@@ -58,8 +58,10 @@ public class HabitatActivity_Frag extends AppCompatActivity
 
         int id = item.getItemId();
         if      (id == R.id.nav_habitats) fragment = new HabitatFragment();
-        else if (id == R.id.nav_stats)    fragment = new StatsFragment();
+        else if (id == R.id.nav_home)    fragment = new HomeFragment();
+        else if (id == R.id.nav_requests) fragment = new RequestFragment();
         else if (id == R.id.nav_settings) fragment = new SettingsFragment();
+        else if (id == R.id.nav_Log_out) fragment = new LogOutFragment();
 
         if (fragment != null) loadFragment(fragment);
 
