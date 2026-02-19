@@ -17,18 +17,18 @@
         app:tint="#2E7D32" />
 
     <TextView
-    android:id="@+id/txtName"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:textSize="16sp"
-    android:textColor="#424242"/>
+        android:id="@+id/txtName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textColor="#424242"/>
 
     <TextView
-    android:id="@+id/txtWatt"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="16sp"
-    android:textStyle="bold"
-    android:paddingLeft="10dp"/>
-    </LinearLayout>
+        android:id="@+id/txtWatt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingLeft="10dp"/>
+</LinearLayout>

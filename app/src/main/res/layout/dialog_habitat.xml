@@ -20,7 +20,7 @@
             android:textStyle="bold"
             android:textColor="#2E7D32"
             android:paddingBottom="16dp"
-        />
+            />
 
     </LinearLayout>
 

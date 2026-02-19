@@ -16,4 +16,6 @@
     <string name="prenom">Nombre</string>
     <string name="nom">Apellido</string>
     <string name="mobile">Móvil</string>
+    <string name="navigation_drawer_open">Abrir</string>
+    <string name="navigation_drawer_close">Cerrar</string>
 </resources>
