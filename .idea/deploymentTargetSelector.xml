@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="HabitatFragment">
+      <SelectionState runConfigName="HabitatFrag">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

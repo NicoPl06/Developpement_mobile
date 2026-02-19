@@ -23,5 +23,6 @@
     <string name="my_requests">Mis solicitudes</string>
     <string name="settings">Ajustes</string>
     <string name="log_out">Cerrar sesión</string>
+    <string name="night_mode">modo nocturno</string>
 
 </resources>

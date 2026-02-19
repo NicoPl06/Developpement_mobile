@@ -23,6 +23,7 @@
     <string name="my_requests">Mes requêtes</string>
     <string name="settings">Paramètres</string>
     <string name="log_out">Se déconnecter</string>
+    <string name="night_mode">Thème sombre</string>
 
 
 </resources>
