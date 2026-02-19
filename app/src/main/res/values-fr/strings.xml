@@ -16,5 +16,7 @@
     <string name="prenom">Prénom</string>
     <string name="nom">Nom</string>
     <string name="mobile">Mobile</string>
+    <string name="navigation_drawer_open">Ouvrir</string>
+    <string name="navigation_drawer_close">Fermer</string>
 
 </resources>

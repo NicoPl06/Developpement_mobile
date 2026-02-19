@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PowerHome">
         <activity
-            android:name=".HabitatActivity"
+            android:name=".HabitatActivity_Frag"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -19,6 +19,8 @@
     <string name="nom">Last name</string>
     <string name="e_mail" translatable="false">E-mail</string>
     <string name="mobile">Mobile</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 
 
     <string-array name="indicatifs">
