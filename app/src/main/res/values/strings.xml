@@ -27,6 +27,8 @@
     <string name="settings">Settings</string>
     <string name="log_out">Log out</string>
     <string name="night_mode">Night mode</string>
+    <string name="moins" translatable="false">-</string>
+    <string name="plus" translatable="false">+</string>
 
 
     <string-array name="indicatifs">
