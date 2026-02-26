@@ -37,5 +37,15 @@
     <string name="display_size_xlarge">Très grand</string>
     <string name="display_size_xxlarge">Immense</string>
 
+    <string name="apparence">Apparence</string>
+    <string name="basculer">Basculer entre le thème clair et sombre</string>
+    <string name="couleur_d_accentuation">Couleur d\'accentuation</string>
+    <string name="toolbar_en_t_te_badges_tage">Toolbar, en-tête, badges étage</string>
+    <string name="choisir">Choisir</string>
+    <string name="luminosit">Luminosité</string>
+    <string name="ajuster_la_luminosit_de_l_cran">Ajuster la luminosité de l\'écran</string>
+    <string name="langue">Langue</string>
+    <string name="accessibilit">Accessibilité</string>
+
 
 </resources>

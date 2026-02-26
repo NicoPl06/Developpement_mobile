@@ -41,6 +41,17 @@
     <string name="display_size_large">Large</string>
     <string name="display_size_xlarge">X-Large</string>
     <string name="display_size_xxlarge">XX-Large</string>
+    <string name="apparence">Appearance</string>
+    <string name="basculer">Switch between light and dark theme</string>
+    <string name="couleur_d_accentuation">Accent color</string>
+    <string name="toolbar_en_t_te_badges_tage">Toolbar, header, floor badges</string>
+    <string name="choisir">Choose</string>
+    <string name="luminosit">Brightness</string>
+    <string name="ajuster_la_luminosit_de_l_cran">Adjust screen brightness</string>
+    <string name="langue">Language</string>
+    <string name="accessibilit">Accessibility</string>
+    <string name="a" translatable="false">A</string>
+    <string name="A" translatable="false">A</string>
 
 
     <string-array name="indicatifs">

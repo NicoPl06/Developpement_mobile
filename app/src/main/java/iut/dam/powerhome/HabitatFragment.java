@@ -6,11 +6,13 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import java.util.*;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -29,7 +31,6 @@ public class HabitatFragment extends Fragment {
         ListView habitants = view.findViewById(R.id.listHabitats);
         List<Habitat> items = new ArrayList<>();
 
-        // ---- Tes données exactes depuis HabitatActivity ----
         List<Appliance> g1 = new ArrayList<>();
         g1.add(new Appliance(1, "Machine à laver", "ML456", 200, ApplianceType.WASHING_MACHINE));
         g1.add(new Appliance(2, "Aspirateur", "A500", 50, ApplianceType.VACUUM));
@@ -56,7 +57,6 @@ public class HabitatFragment extends Fragment {
         g5.add(new Appliance(11, "Aspirateur", "A120", 55, ApplianceType.VACUUM));
         items.add(new Habitat(5, "Abel Fresnel", 3, 54.0, g5));
 
-        // ---- Adapter (ton HabitatAdapter existant, item_habitat.xml) ----
         HabitatAdapter adapter = new HabitatAdapter(
                 requireActivity(),
                 R.layout.item_habitat,
@@ -67,19 +67,26 @@ public class HabitatFragment extends Fragment {
         habitants.setOnItemClickListener((parent, v, position, id) -> {
             Habitat h = items.get(position);
 
-            AlertDialog.Builder b = new AlertDialog.Builder(requireContext()); // ← this devient requireContext()
+            AlertDialog.Builder b = new AlertDialog.Builder(requireContext());
             b.setTitle(h.ResidentName);
-            LayoutInflater inflater = requireActivity().getLayoutInflater(); // ← getLayoutInflater() devient ça
+            LayoutInflater inflater = requireActivity().getLayoutInflater();
             View dialogView = inflater.inflate(R.layout.dialog_habitat, null);
             TextView txtSurface = dialogView.findViewById(R.id.txtSurface);
             LinearLayout container = dialogView.findViewById(R.id.container);
             txtSurface.setText("Surface : " + h.area + " m²");
+
+            // Couleur d'accentuation courante
+            int accentColor = ColorManager.getColor(requireContext());
+
+            // Couleur du titre (txtSurface)
+            txtSurface.setTextColor(accentColor);
 
             for (Appliance a : h.appliances) {
                 View item = inflater.inflate(R.layout.item_appliance, container, false);
                 ImageView icon = item.findViewById(R.id.icon);
                 TextView txtName = item.findViewById(R.id.txtName);
                 TextView txtWatt = item.findViewById(R.id.txtWatt);
+
                 txtName.setText(a.Name);
                 txtWatt.setText(a.wattage + " W");
 
@@ -97,6 +104,10 @@ public class HabitatFragment extends Fragment {
                     case CLIM:            icon.setImageResource(R.drawable.ic_clim);            break;
                     case IRON:            icon.setImageResource(R.drawable.ic_iron);            break;
                 }
+
+                // ← Appliquer la couleur d'accentuation sur l'icône
+                icon.setColorFilter(accentColor, PorterDuff.Mode.SRC_IN);
+
                 container.addView(item);
             }
 

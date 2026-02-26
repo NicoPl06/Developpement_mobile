@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/layout/fragment_settings.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -15,7 +14,6 @@
         android:paddingTop="28dp"
         android:paddingBottom="32dp">
 
-        <!-- Titre de la page -->
         <TextView
             android:text="@string/settings"
             android:textSize="26sp"
@@ -42,7 +40,7 @@
                 android:padding="20dp">
 
                 <TextView
-                    android:text="Apparence"
+                    android:text="@string/apparence"
                     android:textSize="11sp"
                     android:textColor="@color/settings_text_secondary"
                     android:textAllCaps="true"
@@ -73,7 +71,7 @@
                             android:layout_height="wrap_content" />
 
                         <TextView
-                            android:text="Basculer entre le thème clair et sombre"
+                            android:text="@string/basculer"
                             android:textSize="12sp"
                             android:textColor="@color/settings_text_secondary"
                             android:layout_width="wrap_content"
@@ -100,9 +98,65 @@
                     android:background="@color/settings_divider"
                     android:layout_marginBottom="16dp" />
 
+                <!-- Couleur d'accentuation -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:text="@string/couleur_d_accentuation"
+                            android:textSize="15sp"
+                            android:textColor="@color/settings_text_primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:text="@string/toolbar_en_t_te_badges_tage"
+                            android:textSize="12sp"
+                            android:textColor="@color/settings_text_secondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <!-- Pastille aperçu couleur courante -->
+                    <View
+                        android:id="@+id/colorSwatch"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="10dp" />
+
+                    <Button
+                        android:id="@+id/btnPickColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="@string/choisir"
+                        android:textSize="13sp"
+                        android:textColor="@color/settings_btn_primary_text"
+                        android:backgroundTint="@color/settings_btn_primary_bg"
+                        android:paddingHorizontal="18dp"
+                        style="@style/Widget.MaterialComponents.Button" />
+                </LinearLayout>
+
+                <!-- Séparateur -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/settings_divider"
+                    android:layout_marginBottom="16dp" />
+
                 <!-- Luminosité -->
                 <TextView
-                    android:text="Luminosité"
+                    android:text="@string/luminosit"
                     android:textSize="15sp"
                     android:textColor="@color/settings_text_primary"
                     android:layout_width="wrap_content"
@@ -110,7 +164,7 @@
                     android:layout_marginBottom="4dp" />
 
                 <TextView
-                    android:text="Ajuster la luminosité de l'écran"
+                    android:text="@string/ajuster_la_luminosit_de_l_cran"
                     android:textSize="12sp"
                     android:textColor="@color/settings_text_secondary"
                     android:layout_width="wrap_content"
@@ -170,7 +224,7 @@
                 android:padding="20dp">
 
                 <TextView
-                    android:text="Langue"
+                    android:text="@string/langue"
                     android:textSize="11sp"
                     android:textColor="@color/settings_text_secondary"
                     android:textAllCaps="true"
@@ -204,7 +258,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- ===== CARTE : Taille d'affichage ===== -->
+        <!-- ===== CARTE : Accessibilité ===== -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -219,7 +273,7 @@
                 android:padding="20dp">
 
                 <TextView
-                    android:text="Accessibilité"
+                    android:text="@string/accessibilit"
                     android:textSize="11sp"
                     android:textColor="@color/settings_text_secondary"
                     android:textAllCaps="true"
@@ -262,7 +316,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="A"
+                        android:text="@string/a"
                         android:textSize="12sp"
                         android:textColor="@color/settings_text_secondary"
                         android:paddingEnd="10dp" />
@@ -280,7 +334,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="A"
+                        android:text="@string/A"
                         android:textSize="22sp"
                         android:textColor="@color/settings_text_primary"
                         android:paddingStart="10dp" />

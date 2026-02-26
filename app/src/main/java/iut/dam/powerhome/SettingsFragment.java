@@ -20,13 +20,10 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
 
-public class SettingsFragment extends Fragment  {
+public class SettingsFragment extends Fragment {
 
     private float currentBrightness = 0.5f;
-
     private final String[] languageCodes = {"en", "fr", "es"};
-
-    // Les 5 paliers de fontScale
     private final float[] fontScales = {0.85f, 0.95f, 1.0f, 1.15f, 1.30f};
 
     @Override
@@ -37,143 +34,119 @@ public class SettingsFragment extends Fragment  {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Button nightBtn = view.findViewById(R.id.night);
-
-        Button BtnP = view.findViewById(R.id.BtnPlus);
-        Button BtnM = view.findViewById(R.id.BtnMoins);
-
+        Button BtnP    = view.findViewById(R.id.BtnPlus);
+        Button BtnM    = view.findViewById(R.id.BtnMoins);
         Spinner spinner = view.findViewById(R.id.spinnerLanguage);
-
-        SeekBar seekBar  = view.findViewById(R.id.seekBarDisplaySize);
+        SeekBar seekBar = view.findViewById(R.id.seekBarDisplaySize);
         TextView tvValue = view.findViewById(R.id.tvDisplaySizeValue);
 
+        // ---- Bouton couleur ----
+        View colorSwatch = view.findViewById(R.id.colorSwatch);
+        Button btnColor  = view.findViewById(R.id.btnPickColor);
+
+        // Afficher la couleur courante dans le swatch
+        colorSwatch.setBackgroundColor(ColorManager.getColor(requireContext()));
+
+        btnColor.setOnClickListener(v -> {
+            ColorPickerDialog.newInstance(color -> {
+                // 1. Sauvegarder
+                ColorManager.saveColor(requireContext(), color);
+                // 2. Mettre à jour le swatch
+                colorSwatch.setBackgroundColor(color);
+                // 3. Appliquer immédiatement à l'activité (toolbar, nav header, etc.)
+                if (getActivity() instanceof HabitatActivity_Frag) {
+                    ((HabitatActivity_Frag) getActivity()).applyAccentColor(color);
+                }
+            }).show(getParentFragmentManager(), "colorPicker");
+        });
+
+        // ---- Night mode ----
         nightBtn.setOnClickListener(v -> {
             int current = AppCompatDelegate.getDefaultNightMode();
-
-            if (current == AppCompatDelegate.MODE_NIGHT_YES) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            }
-
+            AppCompatDelegate.setDefaultNightMode(
+                    current == AppCompatDelegate.MODE_NIGHT_YES
+                            ? AppCompatDelegate.MODE_NIGHT_NO
+                            : AppCompatDelegate.MODE_NIGHT_YES
+            );
             requireActivity().recreate();
         });
 
-        BtnP.setOnClickListener(v ->{
+        // ---- Luminosité ----
+        BtnP.setOnClickListener(v -> {
             currentBrightness += 0.1f;
             setScreenBrightness(currentBrightness);
-
-
         });
-
         BtnM.setOnClickListener(v -> {
             currentBrightness -= 0.1f;
             setScreenBrightness(currentBrightness);
         });
 
-
-        // --- Spinner langue ---
-        // Noms affichés toujours en natif pour que l'utilisateur reconnaisse sa langue
+        // ---- Spinner langue ----
         String[] languageNames = {"English", "Français", "Español"};
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                languageNames
+                requireContext(), android.R.layout.simple_spinner_item, languageNames
         );
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        // Pré-sélectionner la langue actuellement active
-        String currentLang = Locale.getDefault().getLanguage(); // "en", "fr", "es"
+        String currentLang = Locale.getDefault().getLanguage();
         for (int i = 0; i < languageCodes.length; i++) {
             if (languageCodes[i].equals(currentLang)) {
-                spinner.setSelection(i, false); // false = sans déclencher onItemSelected
+                spinner.setSelection(i, false);
                 break;
             }
         }
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-                String selectedCode = languageCodes[position];
-                String currentCode  = Locale.getDefault().getLanguage();
-
-                // On ne relance l'activité que si la langue change vraiment
-                if (!selectedCode.equals(currentCode)) {
-                    applyLocale(selectedCode);
-                }
+            @Override public void onItemSelected(AdapterView<?> p, View v, int pos, long id) {
+                String sel = languageCodes[pos];
+                if (!sel.equals(Locale.getDefault().getLanguage())) applyLocale(sel);
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            @Override public void onNothingSelected(AdapterView<?> p) {}
         });
 
-
-        // --- SeekBar Display Size ---
-
-        // Lire la fontScale actuelle et trouver le palier le plus proche
+        // ---- SeekBar taille ----
         float activeFontScale = requireContext().getResources().getConfiguration().fontScale;
         int initialProgress = findClosestIndex(activeFontScale);
         seekBar.setProgress(initialProgress);
         tvValue.setText(getScaleLabel(initialProgress));
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Met à jour le label en temps réel pendant le glissement
-                tvValue.setText(getScaleLabel(progress));
+            @Override public void onProgressChanged(SeekBar s, int p, boolean u) {
+                tvValue.setText(getScaleLabel(p));
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // Applique uniquement quand l'utilisateur relâche le curseur
-                float chosenScale = fontScales[seekBar.getProgress()];
-                if (chosenScale != activeFontScale) {
-                    applyFontScale(chosenScale);
-                }
+            @Override public void onStartTrackingTouch(SeekBar s) {}
+            @Override public void onStopTrackingTouch(SeekBar s) {
+                float chosen = fontScales[s.getProgress()];
+                if (chosen != activeFontScale) applyFontScale(chosen);
             }
         });
-
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().setTitle("Settings");
         }
-
     }
 
-    private void setScreenBrightness(float brightness) {
-        if (brightness < 0f) brightness = 0f;
-        if (brightness > 1f) brightness = 1f;
-
-        android.view.WindowManager.LayoutParams params = getActivity().getWindow().getAttributes();
-        params.screenBrightness = brightness;
-        getActivity().getWindow().setAttributes(params);
+    private void setScreenBrightness(float b) {
+        if (b < 0f) b = 0f;
+        if (b > 1f) b = 1f;
+        android.view.WindowManager.LayoutParams p = requireActivity().getWindow().getAttributes();
+        p.screenBrightness = b;
+        requireActivity().getWindow().setAttributes(p);
     }
 
     private void applyLocale(String langCode) {
         Locale locale = new Locale(langCode);
         Locale.setDefault(locale);
-
         Configuration config = new Configuration(requireContext().getResources().getConfiguration());
         config.setLocale(locale);
-
-        // Applique la config à l'activité
-        requireActivity()
-                .getBaseContext()
-                .getResources()
+        requireActivity().getBaseContext().getResources()
                 .updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
-
-        // Recrée l'activité pour que tous les textes soient rechargés
         requireActivity().recreate();
     }
 
-    // Retourne le nom du palier selon la position du SeekBar
     private String getScaleLabel(int progress) {
         switch (progress) {
             case 0: return getString(R.string.display_size_small);
@@ -185,16 +158,12 @@ public class SettingsFragment extends Fragment  {
         }
     }
 
-    // Trouve le palier le plus proche de la fontScale actuelle
     private int findClosestIndex(float scale) {
         int best = 2;
         float minDiff = Float.MAX_VALUE;
         for (int i = 0; i < fontScales.length; i++) {
             float diff = Math.abs(fontScales[i] - scale);
-            if (diff < minDiff) {
-                minDiff = diff;
-                best = i;
-            }
+            if (diff < minDiff) { minDiff = diff; best = i; }
         }
         return best;
     }
@@ -202,11 +171,8 @@ public class SettingsFragment extends Fragment  {
     private void applyFontScale(float scale) {
         Configuration config = new Configuration(requireActivity().getResources().getConfiguration());
         config.fontScale = scale;
-        requireActivity()
-                .getBaseContext()
-                .getResources()
+        requireActivity().getBaseContext().getResources()
                 .updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
         requireActivity().recreate();
     }
-
 }

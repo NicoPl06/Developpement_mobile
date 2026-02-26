@@ -37,4 +37,14 @@
     <string name="display_size_xlarge">Muy grande</string>
     <string name="display_size_xxlarge">Enorme</string>
 
+    <string name="apparence">Apariencia</string>
+    <string name="basculer">Cambiar entre tema claro y oscuro</string>
+    <string name="couleur_d_accentuation">Color de acento</string>
+    <string name="toolbar_en_t_te_badges_tage">Barra, encabezado, insignias de planta</string>
+    <string name="choisir">Elegir</string>
+    <string name="luminosit">Brillo</string>
+    <string name="ajuster_la_luminosit_de_l_cran">Ajustar el brillo de la pantalla</string>
+    <string name="langue">Idioma</string>
+    <string name="accessibilit">Accesibilidad</string>
+
 </resources>
