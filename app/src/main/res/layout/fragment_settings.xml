@@ -1,100 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!-- res/layout/fragment_settings.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
-
-    <TextView
-        android:text="@string/settings"
-        android:textSize="24sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/night"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/night_mode"
-        >
-    </Button>
-
-    <Button
-        android:id="@+id/BtnPlus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/plus"
-        >
-    </Button>
-
-    <Button
-        android:id="@+id/BtnMoins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/moins"
-        >
-    </Button>
-
-    <!-- Spinner langue -->
-    <TextView
-        android:id="@+id/tvLanguageLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/language_label"
-        android:textSize="16sp" />
-
-    <Spinner
-        android:id="@+id/spinnerLanguage"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
-
-    <!-- SeekBar display size -->
-    <TextView
-        android:id="@+id/tvDisplaySizeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/display_size_label"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tvDisplaySizeValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textSize="13sp"
-        android:textStyle="italic" />
+    android:background="@color/settings_background"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="32dp">
 
+        <!-- Titre de la page -->
         <TextView
+            android:text="@string/settings"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/settings_text_primary"
+            android:letterSpacing="0.02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A"
-            android:textSize="12sp"
-            android:paddingEnd="6dp" />
+            android:layout_marginBottom="24dp" />
 
-        <SeekBar
-            android:id="@+id/seekBarDisplaySize"
-            android:layout_width="220dp"
+        <!-- ===== CARTE : Apparence ===== -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="4"
-            android:progress="2" />
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/settings_card_bg">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:text="Apparence"
+                    android:textSize="11sp"
+                    android:textColor="@color/settings_text_secondary"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Mode nuit -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:text="@string/night_mode"
+                            android:textSize="15sp"
+                            android:textColor="@color/settings_text_primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:text="Basculer entre le thème clair et sombre"
+                            android:textSize="12sp"
+                            android:textColor="@color/settings_text_secondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/night"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="@string/night_mode"
+                        android:textSize="13sp"
+                        android:textColor="@color/settings_btn_primary_text"
+                        android:backgroundTint="@color/settings_btn_primary_bg"
+                        android:paddingHorizontal="18dp"
+                        style="@style/Widget.MaterialComponents.Button" />
+                </LinearLayout>
+
+                <!-- Séparateur -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/settings_divider"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Luminosité -->
+                <TextView
+                    android:text="Luminosité"
+                    android:textSize="15sp"
+                    android:textColor="@color/settings_text_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:text="Ajuster la luminosité de l'écran"
+                    android:textSize="12sp"
+                    android:textColor="@color/settings_text_secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/BtnMoins"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:text="@string/moins"
+                        android:textSize="18sp"
+                        android:textColor="@color/settings_btn_outline_text"
+                        android:backgroundTint="@color/settings_btn_outline_bg"
+                        android:padding="0dp"
+                        style="@style/Widget.MaterialComponents.Button" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/BtnPlus"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:text="@string/plus"
+                        android:textSize="18sp"
+                        android:textColor="@color/settings_btn_primary_text"
+                        android:backgroundTint="@color/settings_btn_primary_bg"
+                        android:padding="0dp"
+                        style="@style/Widget.MaterialComponents.Button" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ===== CARTE : Langue ===== -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A"
-            android:textSize="22sp"
-            android:paddingStart="6dp" />
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/settings_card_bg">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:text="Langue"
+                    android:textSize="11sp"
+                    android:textColor="@color/settings_text_secondary"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/tvLanguageLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/language_label"
+                    android:textSize="15sp"
+                    android:textColor="@color/settings_text_primary"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_spinner"
+                    android:paddingHorizontal="12dp">
+
+                    <Spinner
+                        android:id="@+id/spinnerLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ===== CARTE : Taille d'affichage ===== -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/settings_card_bg">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:text="Accessibilité"
+                    android:textSize="11sp"
+                    android:textColor="@color/settings_text_secondary"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/tvDisplaySizeLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/display_size_label"
+                        android:textSize="15sp"
+                        android:textColor="@color/settings_text_primary" />
+
+                    <TextView
+                        android:id="@+id/tvDisplaySizeValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textStyle="italic"
+                        android:textColor="@color/settings_text_secondary" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A"
+                        android:textSize="12sp"
+                        android:textColor="@color/settings_text_secondary"
+                        android:paddingEnd="10dp" />
+
+                    <SeekBar
+                        android:id="@+id/seekBarDisplaySize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:max="4"
+                        android:progress="2"
+                        android:progressTint="@color/settings_seekbar"
+                        android:thumbTint="@color/settings_seekbar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A"
+                        android:textSize="22sp"
+                        android:textColor="@color/settings_text_primary"
+                        android:paddingStart="10dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

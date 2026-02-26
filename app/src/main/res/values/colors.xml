@@ -6,4 +6,17 @@
     <color name="bleu_waze">#33CAFD</color>
     <color name="orange">#FF9800</color>
     <color name="gris">#6d6d6d</color>
+
+    <color name="settings_background">#F4F6F9</color>
+    <color name="settings_card_bg">#FFFFFF</color>
+    <color name="settings_text_primary">#1A1A2E</color>
+    <color name="settings_text_secondary">#8A94A6</color>
+    <color name="settings_divider">#EAEEF4</color>
+    <color name="settings_btn_primary_bg">#1A1A2E</color>
+    <color name="settings_btn_primary_text">#FFFFFF</color>
+    <color name="settings_btn_outline_bg">#EAEEF4</color>
+    <color name="settings_btn_outline_text">#1A1A2E</color>
+    <color name="settings_spinner_bg">#F4F6F9</color>
+    <color name="settings_spinner_border">#EAEEF4</color>
+    <color name="settings_seekbar">#1A1A2E</color>
 </resources>
