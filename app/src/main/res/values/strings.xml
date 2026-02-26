@@ -35,7 +35,12 @@
     <string name="language_french">Français</string>
     <string name="language_spanish">Español</string>
 
-
+    <string name="display_size_label">Display Size</string>
+    <string name="display_size_small">Small</string>
+    <string name="display_size_normal">Normal</string>
+    <string name="display_size_large">Large</string>
+    <string name="display_size_xlarge">X-Large</string>
+    <string name="display_size_xxlarge">XX-Large</string>
 
 
     <string-array name="indicatifs">

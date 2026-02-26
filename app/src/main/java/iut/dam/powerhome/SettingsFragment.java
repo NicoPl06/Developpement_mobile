@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Spinner;
-
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,9 @@ public class SettingsFragment extends Fragment  {
 
     private final String[] languageCodes = {"en", "fr", "es"};
 
+    // Les 5 paliers de fontScale
+    private final float[] fontScales = {0.85f, 0.95f, 1.0f, 1.15f, 1.30f};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup c, Bundle b) {
         return inflater.inflate(R.layout.fragment_settings, c, false);
@@ -39,6 +43,9 @@ public class SettingsFragment extends Fragment  {
         Button BtnM = view.findViewById(R.id.BtnMoins);
 
         Spinner spinner = view.findViewById(R.id.spinnerLanguage);
+
+        SeekBar seekBar  = view.findViewById(R.id.seekBarDisplaySize);
+        TextView tvValue = view.findViewById(R.id.tvDisplaySizeValue);
 
         nightBtn.setOnClickListener(v -> {
             int current = AppCompatDelegate.getDefaultNightMode();
@@ -104,6 +111,35 @@ public class SettingsFragment extends Fragment  {
         });
 
 
+        // --- SeekBar Display Size ---
+
+        // Lire la fontScale actuelle et trouver le palier le plus proche
+        float activeFontScale = requireContext().getResources().getConfiguration().fontScale;
+        int initialProgress = findClosestIndex(activeFontScale);
+        seekBar.setProgress(initialProgress);
+        tvValue.setText(getScaleLabel(initialProgress));
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // Met à jour le label en temps réel pendant le glissement
+                tvValue.setText(getScaleLabel(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Applique uniquement quand l'utilisateur relâche le curseur
+                float chosenScale = fontScales[seekBar.getProgress()];
+                if (chosenScale != activeFontScale) {
+                    applyFontScale(chosenScale);
+                }
+            }
+        });
+
+
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().setTitle("Settings");
@@ -134,6 +170,42 @@ public class SettingsFragment extends Fragment  {
                 .updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
 
         // Recrée l'activité pour que tous les textes soient rechargés
+        requireActivity().recreate();
+    }
+
+    // Retourne le nom du palier selon la position du SeekBar
+    private String getScaleLabel(int progress) {
+        switch (progress) {
+            case 0: return getString(R.string.display_size_small);
+            case 1: return getString(R.string.display_size_normal) + " -";
+            case 2: return getString(R.string.display_size_normal);
+            case 3: return getString(R.string.display_size_large);
+            case 4: return getString(R.string.display_size_xlarge);
+            default: return getString(R.string.display_size_normal);
+        }
+    }
+
+    // Trouve le palier le plus proche de la fontScale actuelle
+    private int findClosestIndex(float scale) {
+        int best = 2;
+        float minDiff = Float.MAX_VALUE;
+        for (int i = 0; i < fontScales.length; i++) {
+            float diff = Math.abs(fontScales[i] - scale);
+            if (diff < minDiff) {
+                minDiff = diff;
+                best = i;
+            }
+        }
+        return best;
+    }
+
+    private void applyFontScale(float scale) {
+        Configuration config = new Configuration(requireActivity().getResources().getConfiguration());
+        config.fontScale = scale;
+        requireActivity()
+                .getBaseContext()
+                .getResources()
+                .updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
         requireActivity().recreate();
     }
 

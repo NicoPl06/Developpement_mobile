@@ -30,4 +30,11 @@
     <string name="language_french">Francés</string>
     <string name="language_spanish">Español</string>
 
+    <string name="display_size_label">Tamaño de pantalla</string>
+    <string name="display_size_small">Pequeño</string>
+    <string name="display_size_normal">Normal</string>
+    <string name="display_size_large">Grande</string>
+    <string name="display_size_xlarge">Muy grande</string>
+    <string name="display_size_xxlarge">Enorme</string>
+
 </resources>
