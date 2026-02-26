@@ -25,15 +25,15 @@ public class HabitatActivity_Frag extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.habitat_activity);
 
-        // 1. Récupérer les vues
+
         toolbar       = findViewById(R.id.toolbar);
         drawerLayout  = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigationView);
 
-        // 2. Définir la Toolbar comme ActionBar
+
         setSupportActionBar(toolbar);
 
-        // 3. Créer le bouton hamburger ☰
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open,
@@ -42,15 +42,18 @@ public class HabitatActivity_Frag extends AppCompatActivity
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        // 4. Écouter les clics du menu
+
         navigationView.setNavigationItemSelectedListener(this);
 
-        // 5. Fragment affiché au démarrage
+
         if (savedInstanceState == null) {
             loadFragment(new HabitatFragment());
             navigationView.setCheckedItem(R.id.nav_habitats);
         }
+
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -58,8 +61,10 @@ public class HabitatActivity_Frag extends AppCompatActivity
 
         int id = item.getItemId();
         if      (id == R.id.nav_habitats) fragment = new HabitatFragment();
-        else if (id == R.id.nav_stats)    fragment = new StatsFragment();
+        else if (id == R.id.nav_home)    fragment = new HomeFragment();
+        else if (id == R.id.nav_requests) fragment = new RequestFragment();
         else if (id == R.id.nav_settings) fragment = new SettingsFragment();
+        else if (id == R.id.nav_Log_out) fragment = new LogOutFragment();
 
         if (fragment != null) loadFragment(fragment);
 

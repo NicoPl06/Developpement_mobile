@@ -18,5 +18,12 @@
     <string name="mobile">Mobile</string>
     <string name="navigation_drawer_open">Ouvrir</string>
     <string name="navigation_drawer_close">Fermer</string>
+    <string name="habitats">Habitats</string>
+    <string name="my_home">Mon habitat</string>
+    <string name="my_requests">Mes requêtes</string>
+    <string name="settings">Paramètres</string>
+    <string name="log_out">Se déconnecter</string>
+    <string name="night_mode">Thème sombre</string>
+
 
 </resources>

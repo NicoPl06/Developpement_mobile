@@ -5,6 +5,7 @@ import android.view.*;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import java.util.*;
 
@@ -102,6 +103,10 @@ public class HabitatFragment extends Fragment {
             b.setView(dialogView);
             b.show();
         });
-    }
 
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setTitle("Habitats");
+        }
+    }
 }

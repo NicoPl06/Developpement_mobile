@@ -6,9 +6,33 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="Paramètres"
+        android:text="@string/settings"
         android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/night_mode"
+        >
+    </Button>
+
+    <Button
+        android:id="@+id/BtnPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plus"
+        >
+    </Button>
+
+    <Button
+        android:id="@+id/BtnMoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/moins"
+        >
+    </Button>
 
 </LinearLayout>

@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-         />
+        />
 
     <TextView
         android:id="@+id/tv_equipments"
@@ -21,7 +21,7 @@
         android:layout_below="@id/tv_residentName"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp"
-         />
+        />
 
     <LinearLayout
         android:id="@+id/ll_appliance_icons"
