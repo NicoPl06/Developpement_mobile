@@ -25,4 +25,9 @@
     <string name="log_out">Cerrar sesión</string>
     <string name="night_mode">modo nocturno</string>
 
+    <string name="language_label">Idioma</string>
+    <string name="language_english">Inglés</string>
+    <string name="language_french">Francés</string>
+    <string name="language_spanish">Español</string>
+
 </resources>

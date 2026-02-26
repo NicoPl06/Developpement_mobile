@@ -35,4 +35,21 @@
         >
     </Button>
 
+    <!-- Spinner langue -->
+    <TextView
+        android:id="@+id/tvLanguageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/language_label"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/spinnerLanguage"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+
+
 </LinearLayout>

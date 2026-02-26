@@ -25,5 +25,10 @@
     <string name="log_out">Se déconnecter</string>
     <string name="night_mode">Thème sombre</string>
 
+    <string name="language_label">Langue</string>
+    <string name="language_english">Anglais</string>
+    <string name="language_french">Français</string>
+    <string name="language_spanish">Espagnol</string>
+
 
 </resources>

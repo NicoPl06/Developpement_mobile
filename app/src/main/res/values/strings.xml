@@ -30,6 +30,13 @@
     <string name="moins" translatable="false">-</string>
     <string name="plus" translatable="false">+</string>
 
+    <string name="language_label">Language</string>
+    <string name="language_english">English</string>
+    <string name="language_french">Français</string>
+    <string name="language_spanish">Español</string>
+
+
+
 
     <string-array name="indicatifs">
         <item>+33</item>
