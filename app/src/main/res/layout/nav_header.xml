@@ -1,11 +1,14 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/nav_header.xml -->
+<!-- La couleur de fond est définie en dur ici mais sera écrasée dynamiquement
+     par applyAccentColor() dans HabitatActivity_Frag au démarrage -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="#228B22"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="20dp">
 
     <TextView
         android:text="PowerHome"
@@ -17,9 +20,10 @@
 
     <TextView
         android:text="Gestion des habitats"
-        android:textColor="#ccffd6"
-        android:textSize="14sp"
+        android:textColor="#AADCAA"
+        android:textSize="13sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp" />
 
 </LinearLayout>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/dialog_habitat.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white">
+    android:background="@color/settings_card_bg">
 
     <LinearLayout
         android:id="@+id/container"
@@ -11,17 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <TextView
             android:id="@+id/txtSurface"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="bold"
-            android:textColor="#2E7D32"
-            android:paddingBottom="16dp"
-            />
+            android:paddingBottom="16dp" />
 
     </LinearLayout>
-
 </ScrollView>

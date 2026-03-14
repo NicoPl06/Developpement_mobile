@@ -1,7 +1,6 @@
 package iut.dam.powerhome;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 
 public class ColorManager {

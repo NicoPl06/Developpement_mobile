@@ -6,14 +6,12 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-    <!-- Preview bande couleur -->
     <View
         android:id="@+id/colorPreview"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginBottom="12dp" />
 
-    <!-- Nom de la couleur sélectionnée -->
     <TextView
         android:id="@+id/tvColorName"
         android:layout_width="match_parent"
@@ -24,7 +22,6 @@
         android:gravity="center"
         android:layout_marginBottom="16dp" />
 
-    <!-- Grille de pastilles -->
     <android.widget.GridLayout
         android:id="@+id/colorGrid"
         android:layout_width="wrap_content"

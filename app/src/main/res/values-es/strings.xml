@@ -1,49 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/values-es/strings.xml — Español -->
 <resources>
 
-    <string name="navigation_drawer_open">Abrir panel de navegación</string>
-    <string name="navigation_drawer_close">Cerrar panel de navegación</string>
-    <string name="habitats">Hábitats</string>
-    <string name="my_home">Mi hogar</string>
+    <string name="app_name">PowerHome</string>
+    <string name="app_name_login">PowerHome</string>
+
+    <string name="navigation_drawer_open">Abrir menú</string>
+    <string name="navigation_drawer_close">Cerrar menú</string>
+
+    <string name="my_home">Mi vivienda</string>
+    <string name="my_habitat">Hábitats</string>
     <string name="my_requests">Mis solicitudes</string>
-    <string name="settings">Ajustes</string>
+    <string name="settings">Configuración</string>
     <string name="log_out">Cerrar sesión</string>
 
-    <string name="identifiez_vous">Identifíquese</string>
-    <string name="connectez_vous_banniere">Iniciar sesión</string>
-    <string name="connectez_vous">INICIAR SESIÓN</string>
-    <string name="email">Correo electrónico</string>
-    <string name="mot_de_passe">Contraseña</string>
-    <string name="mot_de_passe_oublie">¿OLVIDÓ SU CONTRASEÑA?</string>
-    <string name="nouveau_sur_jumia">¿Nuevo en Jumia?</string>
-    <string name="cree_un_compte">CREAR UNA CUENTA</string>
-    <string name="creer_un_compte">Crear una cuenta</string>
-    <string name="creer_un_nouveau_compte">Crear una cuenta nueva</string>
-    <string name="ou">O</string>
-    <string name="continuer_avec_facebook">Continuar con Facebook</string>
-    <string name="prenom">Nombre</string>
-    <string name="nom">Apellido</string>
-    <string name="mobile">Móvil</string>
+    <string name="apparence">Apariencia</string>
+    <string name="night_mode">Tema</string>
+    <string name="theme">Tema</string>
+    <string name="basculer">Cambiar entre tema claro y oscuro</string>
+    <string name="couleur_d_accentuation">Color de acento</string>
+    <string name="toolbar_en_t_te_badges_tage">Barra, encabezado, insignias de planta</string>
+    <string name="choisir">Elegir</string>
+    <string name="luminosit">Brillo</string>
+    <string name="ajuster_la_luminosit_de_l_cran">Ajustar el brillo de la pantalla</string>
+    <string name="plus">+</string>
+    <string name="moins">−</string>
+    <string name="less">−</string>
 
-    <string name="theme">Cambiar el tema (oscuro/claro)</string>
-    <string name="size_text">El tamaño del texto es :</string>
+    <string name="langue">Idioma</string>
+    <string name="language_label">Idioma de la aplicación</string>
 
-    <string name="devices">Mis dispositivos</string>
-    <string name="zero_device">No tienes dispositivos registrados</string>
-    <string name="floor">Piso : </string>
-    <string name="area">Área : </string>
-    <string name="my_habitat">Mi hábitat</string>
-    <string name="name">Nombre : </string>
-    <string name="personal_info">Información Personal</string>
+    <string name="accessibilit">Accesibilidad</string>
+    <string name="display_size_label">Tamaño de visualización</string>
+    <string name="display_size_small">Pequeño</string>
+    <string name="display_size_normal">Normal</string>
+    <string name="display_size_large">Grande</string>
+    <string name="display_size_xlarge">Muy grande</string>
 
+    <string name="size_text">Tamaño del texto</string>
+    <string name="percent">100%</string>
+
+    <string name="info_perso">Información personal</string>
+    <string name="name">Nombre:</string>
+    <string name="Email_2points">Correo:</string>
+    <string name="area">Superficie:</string>
+    <string name="floor">Planta:</string>
+    <string name="devices">Dispositivos</string>
+    <string name="add_appliance">Añadir dispositivo</string>
+    <string name="zero_device">Ningún dispositivo registrado.</string>
+
+    <string name="type_appareil">Tipo de dispositivo</string>
+    <string name="nom_personnalise">Nombre personalizado (opcional)</string>
+    <string name="puissance">Potencia en vatios</string>
+    <string name="reference_otionnel">Referencia (opcional)</string>
+
+    <string name="device_default">Dispositivo</string>
     <string name="device_iron">Plancha</string>
     <string name="device_washing_machine">Lavadora</string>
     <string name="device_vacuum">Aspiradora</string>
     <string name="device_clim">Aire acondicionado</string>
-    <string name="device_default">Dispositivo</string>
-    <string name="info_perso">Información personal</string>
-    <string name="add_appliance">Agregar un dispositivo</string>
-    <string name="type_appareil">Tipo de dispositivo:</string>
-    <string name="nom_personnalise">Nombre personalizado (por ejemplo, Mi Aire Acondicionado)</string>
-    <string name="puissance">Potencia (vatios)</string>
-    <string name="reference_otionnel">Referencia (opcional)</string>
+
+    <string name="connectez_vous_banniere">Iniciar sesión</string>
+    <string name="identifiez_vous">Identifíquese</string>
+    <string name="email">Correo electrónico</string>
+    <string name="mot_de_passe">Contraseña</string>
+    <string name="mot_de_passe_oublie">¿Olvidó su contraseña?</string>
+    <string name="connectez_vous">Iniciar sesión</string>
+    <string name="nouveau_sur_jumia">¿Nuevo en PowerHome?</string>
+    <string name="cree_un_compte">Crear una cuenta</string>
+    <string name="ou">o</string>
+    <string name="continuer_avec_facebook">Continuar con Facebook</string>
+
+    <string name="creer_un_compte">Crear cuenta</string>
+    <string name="creer_un_nouveau_compte">Crear una nueva cuenta</string>
+    <string name="prenom">Nombre</string>
+    <string name="nom">Apellido</string>
+    <string name="e_mail">Correo electrónico</string>
+    <string name="mobile">Número de móvil</string>
+
+    <string-array name="indicatifs">
+        <item>+33 (Francia)</item>
+        <item>+32 (Bélgica)</item>
+        <item>+41 (Suiza)</item>
+        <item>+1 (EE.UU./Canadá)</item>
+        <item>+44 (Reino Unido)</item>
+        <item>+34 (España)</item>
+    </string-array>
+
 </resources>

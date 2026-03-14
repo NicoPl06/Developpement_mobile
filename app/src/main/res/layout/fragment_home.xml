@@ -1,107 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/fragment_home.xml -->
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/settings_background"
     android:fillViewport="true"
-    android:padding="16dp">
+    android:paddingHorizontal="20dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="32dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Carte : Infos personnelles -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/settings_card_bg">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/info_perso"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp"/>
+                    android:textSize="11sp"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/settings_text_secondary"
+                    android:layout_marginBottom="12dp" />
 
                 <TextView
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/name"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/settings_text_primary"
+                    android:layout_marginBottom="8dp" />
 
                 <TextView
                     android:id="@+id/tv_user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Email_2points"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/settings_text_primary" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- Carte : Mon habitat -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/settings_card_bg">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/my_habitat"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp"/>
+                    android:text="@string/my_home"
+                    android:textSize="11sp"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/settings_text_secondary"
+                    android:layout_marginBottom="12dp" />
 
                 <TextView
                     android:id="@+id/tv_habitat_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/area"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/settings_text_primary"
+                    android:layout_marginBottom="8dp" />
 
                 <TextView
                     android:id="@+id/tv_habitat_floor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/floor"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:textSize="15sp"
+                    android:textColor="@color/settings_text_primary" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- Carte : Appareils -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/settings_card_bg">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -114,19 +130,21 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:text="@string/devices"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textSize="11sp"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.12"
+                        android:textColor="@color/settings_text_secondary" />
 
                     <ImageButton
                         android:id="@+id/btn_add_appliance"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="@string/add_appliance"
                         android:src="@android:drawable/ic_input_add"
-                        app:tint="@color/design_default_color_primary" />
+                        app:tint="@color/settings_text_primary" />
 
                 </RelativeLayout>
 
@@ -141,8 +159,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/zero_device"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     android:textStyle="italic"
+                    android:textColor="@color/settings_text_secondary"
                     android:visibility="gone" />
 
             </LinearLayout>

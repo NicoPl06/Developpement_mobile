@@ -2,6 +2,7 @@ package iut.dam.powerhome;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,7 @@ public class HabitatFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         listHabitats = view.findViewById(R.id.listHabitats);
         adapter = new HabitatAdapter(requireActivity(), R.layout.item_habitat, items);
         listHabitats.setAdapter(adapter);
@@ -77,19 +79,15 @@ public class HabitatFragment extends Fragment {
                                 JSONArray appArray = obj.getJSONArray("appliances");
                                 for (int j = 0; j < appArray.length(); j++) {
                                     JSONObject appObj = appArray.getJSONObject(j);
-
-
                                     String rawName = appObj.optString("Name", "Appareil");
-                                    if(rawName.equals("Appareil")) rawName = appObj.optString("name", "Appareil");
-
+                                    if (rawName.equals("Appareil")) rawName = appObj.optString("name", "Appareil");
                                     String displayName = rawName.contains(" (") ? rawName.split(" \\(")[0] : rawName;
-
                                     appliances.add(new Appliance(
                                             appObj.optInt("id", 0),
                                             displayName,
                                             appObj.optString("reference", ""),
                                             appObj.optInt("wattage", 0),
-                                            ApplianceType.valueOfName(rawName) // On utilise le nom complet pour l'icône
+                                            ApplianceType.valueOfName(rawName)
                                     ));
                                 }
                             }
@@ -107,33 +105,44 @@ public class HabitatFragment extends Fragment {
     private void showDetails(Habitat h) {
         AlertDialog.Builder b = new AlertDialog.Builder(requireContext());
         b.setTitle(h.ResidentName);
+
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_habitat, null);
-        TextView txtSurface = dialogView.findViewById(R.id.txtSurface);
+        TextView txtSurface   = dialogView.findViewById(R.id.txtSurface);
         LinearLayout container = dialogView.findViewById(R.id.container);
+
+        int accentColor = ColorManager.getColor(requireContext());
+
         txtSurface.setText("Surface : " + h.area + " m²");
+        txtSurface.setTextColor(accentColor);
 
         for (Appliance a : h.appliances) {
             View item = getLayoutInflater().inflate(R.layout.item_appliance, container, false);
-            ImageView icon = item.findViewById(R.id.icon);
+            ImageView icon  = item.findViewById(R.id.icon);
             TextView txtName = item.findViewById(R.id.txtName);
             TextView txtWatt = item.findViewById(R.id.txtWatt);
+
             txtName.setText(a.Name);
             txtWatt.setText(a.wattage + " W");
 
-            if (a.wattage < 100) txtWatt.setTextColor(getResources().getColor(R.color.jaune));
-            else if (a.wattage < 150) txtWatt.setTextColor(getResources().getColor(R.color.orange));
-            else txtWatt.setTextColor(getResources().getColor(R.color.rouge));
+            if (a.wattage < 100)       txtWatt.setTextColor(getResources().getColor(R.color.jaune));
+            else if (a.wattage < 150)  txtWatt.setTextColor(getResources().getColor(R.color.orange));
+            else                       txtWatt.setTextColor(getResources().getColor(R.color.rouge));
 
             if (a.type != null) {
                 switch (a.type) {
                     case WASHING_MACHINE: icon.setImageResource(R.drawable.ic_washing_machine); break;
-                    case VACUUM: icon.setImageResource(R.drawable.ic_vacuum); break;
-                    case CLIM: icon.setImageResource(R.drawable.ic_clim); break;
-                    case IRON: icon.setImageResource(R.drawable.ic_iron); break;
+                    case VACUUM:          icon.setImageResource(R.drawable.ic_vacuum);          break;
+                    case CLIM:            icon.setImageResource(R.drawable.ic_clim);            break;
+                    case IRON:            icon.setImageResource(R.drawable.ic_iron);            break;
                 }
             }
+
+            // Couleur dynamique sur les icônes
+            icon.setColorFilter(accentColor, PorterDuff.Mode.SRC_IN);
+
             container.addView(item);
         }
+
         b.setView(dialogView);
         b.show();
     }

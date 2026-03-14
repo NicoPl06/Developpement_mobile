@@ -1,49 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/values/strings.xml — Français (langue par défaut) -->
 <resources>
 
-    <string name="navigation_drawer_open">Ouvrir le menu de navigation</string>
-    <string name="navigation_drawer_close">Fermer le menu de navigation</string>
-    <string name="habitats">Habitats</string>
-    <string name="my_home">Mon foyer</string>
+    <!-- App -->
+    <string name="app_name">PowerHome</string>
+    <string name="app_name_login">PowerHome</string>
+
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_open">Ouvrir le menu</string>
+    <string name="navigation_drawer_close">Fermer le menu</string>
+
+    <!-- Menu items -->
+    <string name="my_home">Mon logement</string>
+    <string name="my_habitat">Habitats</string>
     <string name="my_requests">Mes demandes</string>
     <string name="settings">Paramètres</string>
     <string name="log_out">Se déconnecter</string>
 
-    <string name="identifiez_vous">Identifiez-vous</string>
-    <string name="connectez_vous_banniere">Connexion</string>
-    <string name="connectez_vous">SE CONNECTER</string>
-    <string name="email">E-mail</string>
-    <string name="mot_de_passe">Mot de passe</string>
-    <string name="mot_de_passe_oublie">MOT DE PASSE OUBLIÉ ?</string>
-    <string name="nouveau_sur_jumia">Nouveau chez Jumia ?</string>
-    <string name="cree_un_compte">CRÉER UN COMPTE</string>
-    <string name="creer_un_compte">Créer un compte</string>
-    <string name="creer_un_nouveau_compte">Créer un nouveau compte</string>
-    <string name="ou">OU</string>
-    <string name="continuer_avec_facebook">Continuer avec Facebook</string>
-    <string name="prenom">Prénom</string>
-    <string name="nom">Nom</string>
-    <string name="mobile">Mobile</string>
+    <!-- Settings — Apparence -->
+    <string name="apparence">Apparence</string>
+    <string name="night_mode">Thème</string>
+    <string name="theme">Thème</string>
+    <string name="basculer">Basculer entre le thème clair et sombre</string>
+    <string name="couleur_d_accentuation">Couleur d\'accentuation</string>
+    <string name="toolbar_en_t_te_badges_tage">Toolbar, en-tête, badges étage</string>
+    <string name="choisir">Choisir</string>
+    <string name="luminosit">Luminosité</string>
+    <string name="ajuster_la_luminosit_de_l_cran">Ajuster la luminosité de l\'écran</string>
+    <string name="plus">+</string>
+    <string name="moins">−</string>
+    <string name="less">−</string>
 
-    <string name="theme">Changer le thème (sombre/clair)</string>
-    <string name="size_text">La taille du texte est :</string>
+    <!-- Settings — Langue -->
+    <string name="langue">Langue</string>
+    <string name="language_label">Langue de l\'application</string>
 
-    <string name="devices">Mes appareils</string>
-    <string name="zero_device">Vous n\'avez aucun appareil enregistré</string>
-    <string name="floor">Étage : </string>
-    <string name="area">Surface : </string>
-    <string name="my_habitat">Mon habitat</string>
-    <string name="name">Nom : </string>
-    <string name="personal_info">Informations Personnelles</string>
+    <!-- Settings — Accessibilité -->
+    <string name="accessibilit">Accessibilité</string>
+    <string name="display_size_label">Taille d\'affichage</string>
+    <string name="display_size_small">Petit</string>
+    <string name="display_size_normal">Normal</string>
+    <string name="display_size_large">Grand</string>
+    <string name="display_size_xlarge">Très grand</string>
 
+    <!-- Settings — ancien layout (compatibilité) -->
+    <string name="size_text">Taille du texte</string>
+    <string name="percent">100%</string>
+
+    <!-- Home fragment -->
+    <string name="info_perso">Informations personnelles</string>
+    <string name="name">Nom :</string>
+    <string name="Email_2points">Email :</string>
+    <string name="area">Surface :</string>
+    <string name="floor">Étage :</string>
+    <string name="devices">Appareils</string>
+    <string name="add_appliance">Ajouter un appareil</string>
+    <string name="zero_device">Aucun appareil enregistré.</string>
+
+    <!-- Appliance dialog -->
+    <string name="type_appareil">Type d\'appareil</string>
+    <string name="nom_personnalise">Nom personnalisé (optionnel)</string>
+    <string name="puissance">Puissance en watts</string>
+    <string name="reference_otionnel">Référence (optionnel)</string>
+
+    <!-- Device names -->
+    <string name="device_default">Appareil</string>
     <string name="device_iron">Fer à repasser</string>
-    <string name="device_washing_machine">Lave-linge</string>
+    <string name="device_washing_machine">Machine à laver</string>
     <string name="device_vacuum">Aspirateur</string>
     <string name="device_clim">Climatisation</string>
-    <string name="device_default">Appareil</string>
-    <string name="info_perso">Informations personnelles</string>
-    <string name="add_appliance">"Ajouter un appareil "</string>
-    <string name="type_appareil">Type d\'appareil:</string>
-    <string name="nom_personnalise">Nom personnalisé (ex : Ma Clim)</string>
-    <string name="puissance">Puissance ( Watts )</string>
-    <string name="reference_otionnel">Référence (optionnelle)</string>
+
+    <!-- Login -->
+    <string name="connectez_vous_banniere">Connectez-vous</string>
+    <string name="identifiez_vous">Identifiez-vous</string>
+    <string name="email">Email</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="mot_de_passe_oublie">Mot de passe oublié ?</string>
+    <string name="connectez_vous">Se connecter</string>
+    <string name="nouveau_sur_jumia">Nouveau sur PowerHome ?</string>
+    <string name="cree_un_compte">Créer un compte</string>
+    <string name="ou">ou</string>
+    <string name="continuer_avec_facebook">Continuer avec Facebook</string>
+
+    <!-- Register -->
+    <string name="creer_un_compte">Créer un compte</string>
+    <string name="creer_un_nouveau_compte">Créer un nouveau compte</string>
+    <string name="prenom">Prénom</string>
+    <string name="nom">Nom</string>
+    <string name="e_mail">E-mail</string>
+    <string name="mobile">Numéro de mobile</string>
+
+    <!-- Phone indicators -->
+    <string-array name="indicatifs">
+        <item>+33 (France)</item>
+        <item>+32 (Belgique)</item>
+        <item>+41 (Suisse)</item>
+        <item>+1 (USA/Canada)</item>
+        <item>+44 (UK)</item>
+        <item>+34 (Espagne)</item>
+    </string-array>
+
 </resources>
