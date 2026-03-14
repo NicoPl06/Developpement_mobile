@@ -1,50 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="identifiez_vous">Iniciar sesión</string>
-    <string name="email">Correo electrónico</string>
-    <string name="mot_de_passe">Contraseña</string>
-    <string name="mot_de_passe_oublie">¿OLVIDASTE TU CONTRASEÑA?</string>
-    <string name="nouveau_sur_jumia">¿Nuevo en Jumia?</string>
-    <string name="cree_un_compte">CREAR UNA CUENTA</string>
-    <string name="ou">O</string>
-    <string name="continuer_avec_facebook">Continuar con Facebook</string>
-    <string name="connectez_vous">INICIAR SESIÓN</string>
-    <string name="connectez_vous_banniere">Iniciar sesión</string>
-    <string name="creer_un_compte">Crear una cuenta</string>
-    <string name="creer_un_nouveau_compte">Crear una nueva cuenta</string>
-    <string name="prenom">Nombre</string>
-    <string name="nom">Apellido</string>
-    <string name="mobile">Móvil</string>
-    <string name="navigation_drawer_open">Abrir</string>
-    <string name="navigation_drawer_close">Cerrar</string>
+    <string name="navigation_drawer_open">Abrir panel de navegación</string>
+    <string name="navigation_drawer_close">Cerrar panel de navegación</string>
     <string name="habitats">Hábitats</string>
     <string name="my_home">Mi hogar</string>
     <string name="my_requests">Mis solicitudes</string>
     <string name="settings">Ajustes</string>
     <string name="log_out">Cerrar sesión</string>
-    <string name="night_mode">modo nocturno</string>
 
-    <string name="language_label">Idioma</string>
-    <string name="language_english">Inglés</string>
-    <string name="language_french">Francés</string>
-    <string name="language_spanish">Español</string>
+    <string name="identifiez_vous">Identifíquese</string>
+    <string name="connectez_vous_banniere">Iniciar sesión</string>
+    <string name="connectez_vous">INICIAR SESIÓN</string>
+    <string name="email">Correo electrónico</string>
+    <string name="mot_de_passe">Contraseña</string>
+    <string name="mot_de_passe_oublie">¿OLVIDÓ SU CONTRASEÑA?</string>
+    <string name="nouveau_sur_jumia">¿Nuevo en Jumia?</string>
+    <string name="cree_un_compte">CREAR UNA CUENTA</string>
+    <string name="creer_un_compte">Crear una cuenta</string>
+    <string name="creer_un_nouveau_compte">Crear una cuenta nueva</string>
+    <string name="ou">O</string>
+    <string name="continuer_avec_facebook">Continuar con Facebook</string>
+    <string name="prenom">Nombre</string>
+    <string name="nom">Apellido</string>
+    <string name="mobile">Móvil</string>
 
-    <string name="display_size_label">Tamaño de pantalla</string>
-    <string name="display_size_small">Pequeño</string>
-    <string name="display_size_normal">Normal</string>
-    <string name="display_size_large">Grande</string>
-    <string name="display_size_xlarge">Muy grande</string>
-    <string name="display_size_xxlarge">Enorme</string>
+    <string name="theme">Cambiar el tema (oscuro/claro)</string>
+    <string name="size_text">El tamaño del texto es :</string>
 
-    <string name="apparence">Apariencia</string>
-    <string name="basculer">Cambiar entre tema claro y oscuro</string>
-    <string name="couleur_d_accentuation">Color de acento</string>
-    <string name="toolbar_en_t_te_badges_tage">Barra, encabezado, insignias de planta</string>
-    <string name="choisir">Elegir</string>
-    <string name="luminosit">Brillo</string>
-    <string name="ajuster_la_luminosit_de_l_cran">Ajustar el brillo de la pantalla</string>
-    <string name="langue">Idioma</string>
-    <string name="accessibilit">Accesibilidad</string>
+    <string name="devices">Mis dispositivos</string>
+    <string name="zero_device">No tienes dispositivos registrados</string>
+    <string name="floor">Piso : </string>
+    <string name="area">Área : </string>
+    <string name="my_habitat">Mi hábitat</string>
+    <string name="name">Nombre : </string>
+    <string name="personal_info">Información Personal</string>
 
+    <string name="device_iron">Plancha</string>
+    <string name="device_washing_machine">Lavadora</string>
+    <string name="device_vacuum">Aspiradora</string>
+    <string name="device_clim">Aire acondicionado</string>
+    <string name="device_default">Dispositivo</string>
+    <string name="info_perso">Información personal</string>
+    <string name="add_appliance">Agregar un dispositivo</string>
+    <string name="type_appareil">Tipo de dispositivo:</string>
+    <string name="nom_personnalise">Nombre personalizado (por ejemplo, Mi Aire Acondicionado)</string>
+    <string name="puissance">Potencia (vatios)</string>
+    <string name="reference_otionnel">Referencia (opcional)</string>
 </resources>

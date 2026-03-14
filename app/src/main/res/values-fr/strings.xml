@@ -1,51 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="navigation_drawer_open">Ouvrir le menu de navigation</string>
+    <string name="navigation_drawer_close">Fermer le menu de navigation</string>
+    <string name="habitats">Habitats</string>
+    <string name="my_home">Mon foyer</string>
+    <string name="my_requests">Mes demandes</string>
+    <string name="settings">Paramètres</string>
+    <string name="log_out">Se déconnecter</string>
+
     <string name="identifiez_vous">Identifiez-vous</string>
-    <string name="email">Email</string>
+    <string name="connectez_vous_banniere">Connexion</string>
+    <string name="connectez_vous">SE CONNECTER</string>
+    <string name="email">E-mail</string>
     <string name="mot_de_passe">Mot de passe</string>
     <string name="mot_de_passe_oublie">MOT DE PASSE OUBLIÉ ?</string>
-    <string name="nouveau_sur_jumia">Nouveau sur Jumia ?</string>
-    <string name="cree_un_compte">CRÉEZ UN COMPTE</string>
-    <string name="ou">OU</string>
-    <string name="continuer_avec_facebook">Continuer avec Facebook</string>
-    <string name="connectez_vous">CONNECTEZ-VOUS</string>
-    <string name="connectez_vous_banniere">Connectez-vous</string>
+    <string name="nouveau_sur_jumia">Nouveau chez Jumia ?</string>
+    <string name="cree_un_compte">CRÉER UN COMPTE</string>
     <string name="creer_un_compte">Créer un compte</string>
     <string name="creer_un_nouveau_compte">Créer un nouveau compte</string>
+    <string name="ou">OU</string>
+    <string name="continuer_avec_facebook">Continuer avec Facebook</string>
     <string name="prenom">Prénom</string>
     <string name="nom">Nom</string>
     <string name="mobile">Mobile</string>
-    <string name="navigation_drawer_open">Ouvrir</string>
-    <string name="navigation_drawer_close">Fermer</string>
-    <string name="habitats">Habitats</string>
-    <string name="my_home">Mon habitat</string>
-    <string name="my_requests">Mes requêtes</string>
-    <string name="settings">Paramètres</string>
-    <string name="log_out">Se déconnecter</string>
-    <string name="night_mode">Thème sombre</string>
 
-    <string name="language_label">Langue</string>
-    <string name="language_english">Anglais</string>
-    <string name="language_french">Français</string>
-    <string name="language_spanish">Espagnol</string>
+    <string name="theme">Changer le thème (sombre/clair)</string>
+    <string name="size_text">La taille du texte est :</string>
 
-    <string name="display_size_label">Taille d\'affichage</string>
-    <string name="display_size_small">Petit</string>
-    <string name="display_size_normal">Normal</string>
-    <string name="display_size_large">Grand</string>
-    <string name="display_size_xlarge">Très grand</string>
-    <string name="display_size_xxlarge">Immense</string>
+    <string name="devices">Mes appareils</string>
+    <string name="zero_device">Vous n\'avez aucun appareil enregistré</string>
+    <string name="floor">Étage : </string>
+    <string name="area">Surface : </string>
+    <string name="my_habitat">Mon habitat</string>
+    <string name="name">Nom : </string>
+    <string name="personal_info">Informations Personnelles</string>
 
-    <string name="apparence">Apparence</string>
-    <string name="basculer">Basculer entre le thème clair et sombre</string>
-    <string name="couleur_d_accentuation">Couleur d\'accentuation</string>
-    <string name="toolbar_en_t_te_badges_tage">Toolbar, en-tête, badges étage</string>
-    <string name="choisir">Choisir</string>
-    <string name="luminosit">Luminosité</string>
-    <string name="ajuster_la_luminosit_de_l_cran">Ajuster la luminosité de l\'écran</string>
-    <string name="langue">Langue</string>
-    <string name="accessibilit">Accessibilité</string>
-
-
+    <string name="device_iron">Fer à repasser</string>
+    <string name="device_washing_machine">Lave-linge</string>
+    <string name="device_vacuum">Aspirateur</string>
+    <string name="device_clim">Climatisation</string>
+    <string name="device_default">Appareil</string>
+    <string name="info_perso">Informations personnelles</string>
+    <string name="add_appliance">"Ajouter un appareil "</string>
+    <string name="type_appareil">Type d\'appareil:</string>
+    <string name="nom_personnalise">Nom personnalisé (ex : Ma Clim)</string>
+    <string name="puissance">Puissance ( Watts )</string>
+    <string name="reference_otionnel">Référence (optionnelle)</string>
 </resources>

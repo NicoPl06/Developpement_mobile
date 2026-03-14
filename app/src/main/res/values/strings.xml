@@ -1,58 +1,58 @@
 <resources>
     <string name="app_name" translatable="false">PowerHome</string>
-    <string name="app_name_waze" translatable="false">Waze</string>
     <string name="app_name_login" translatable="false">Login</string>
 
-    <string name="identifiez_vous">Sign in</string>
-    <string name="email">Email</string>
-    <string name="mot_de_passe">Password</string>
-    <string name="mot_de_passe_oublie">FORGOT PASSWORD?</string>
-    <string name="nouveau_sur_jumia">New to Jumia?</string>
-    <string name="cree_un_compte">CREATE AN ACCOUNT</string>
-    <string name="ou">OR</string>
-    <string name="continuer_avec_facebook">Continue with Facebook</string>
-    <string name="connectez_vous">SIGN IN</string>
-    <string name="connectez_vous_banniere">Sign in</string>
-    <string name="creer_un_compte">Create an account</string>
-    <string name="creer_un_nouveau_compte">Create a new account</string>
-    <string name="prenom">First name</string>
-    <string name="nom">Last name</string>
-    <string name="e_mail" translatable="false">E-mail</string>
-    <string name="mobile">Mobile</string>
-    <string name="navigation_drawer_open">Open</string>
-    <string name="navigation_drawer_close">Close</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="habitats">Habitats</string>
     <string name="my_home">My home</string>
     <string name="my_requests">My requests</string>
     <string name="settings">Settings</string>
     <string name="log_out">Log out</string>
-    <string name="night_mode">Night mode</string>
-    <string name="moins" translatable="false">-</string>
+
+    <string name="identifiez_vous">Sign in</string>
+    <string name="connectez_vous_banniere">Sign in</string>
+    <string name="connectez_vous">SIGN IN</string>
+    <string name="email">Email</string>
+    <string name="e_mail" translatable="false">E-mail</string>
+    <string name="mot_de_passe">Password</string>
+    <string name="mot_de_passe_oublie">FORGOT PASSWORD?</string>
+    <string name="nouveau_sur_jumia">New to Jumia?</string>
+    <string name="cree_un_compte">CREATE AN ACCOUNT</string>
+    <string name="creer_un_compte">Create an account</string>
+    <string name="creer_un_nouveau_compte">Create a new account</string>
+    <string name="ou">OR</string>
+    <string name="continuer_avec_facebook">Continue with Facebook</string>
+    <string name="prenom">First name</string>
+    <string name="nom">Last name</string>
+    <string name="mobile">Mobile</string>
+
+    <string name="theme">Change the theme (dark/light)</string>
+    <string name="size_text">The size of text is :</string>
+    <string name="percent" translatable="false">100%</string>
+    <string name="less" translatable="false">-</string>
     <string name="plus" translatable="false">+</string>
 
-    <string name="language_label">Language</string>
-    <string name="language_english">English</string>
-    <string name="language_french">Français</string>
-    <string name="language_spanish">Español</string>
+    <string name="devices">My devices</string>
+    <string name="zero_device">You got zero device registered</string>
+    <string name="floor">Floor : </string>
+    <string name="area">Area : </string>
+    <string name="my_habitat">My habitat</string>
+    <string name="name">Name : </string>
+    <string name="Email_2points" translatable="false">Email : </string>
+    <string name="personal_info">Personal Information</string>
 
-    <string name="display_size_label">Display Size</string>
-    <string name="display_size_small">Small</string>
-    <string name="display_size_normal">Normal</string>
-    <string name="display_size_large">Large</string>
-    <string name="display_size_xlarge">X-Large</string>
-    <string name="display_size_xxlarge">XX-Large</string>
-    <string name="apparence">Appearance</string>
-    <string name="basculer">Switch between light and dark theme</string>
-    <string name="couleur_d_accentuation">Accent color</string>
-    <string name="toolbar_en_t_te_badges_tage">Toolbar, header, floor badges</string>
-    <string name="choisir">Choose</string>
-    <string name="luminosit">Brightness</string>
-    <string name="ajuster_la_luminosit_de_l_cran">Adjust screen brightness</string>
-    <string name="langue">Language</string>
-    <string name="accessibilit">Accessibility</string>
-    <string name="a" translatable="false">A</string>
-    <string name="A" translatable="false">A</string>
-
+    <string name="device_iron">Iron</string>
+    <string name="device_washing_machine">Washing Machine</string>
+    <string name="device_vacuum">Vacuum Cleaner</string>
+    <string name="device_clim">Air Conditioning</string>
+    <string name="device_default">Appliance</string>
+    <string name="info_perso">Personal Information</string>
+    <string name="add_appliance">Add a device</string>
+    <string name="type_appareil">Device type:</string>
+    <string name="nom_personnalise">Personalized name (e.g., My Air Conditioner)</string>
+    <string name="puissance">Power (Watts)</string>
+    <string name="reference_otionnel">Reference (Optional)</string>
 
     <string-array name="indicatifs">
         <item>+33</item>
@@ -60,7 +60,5 @@
         <item>+49</item>
         <item>+41</item>
         <item>+1</item>
-        <item>+666</item>
     </string-array>
-
 </resources>

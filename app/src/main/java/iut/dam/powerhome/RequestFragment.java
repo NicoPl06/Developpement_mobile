@@ -15,14 +15,12 @@ public class RequestFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup c, Bundle b) {
         return inflater.inflate(R.layout.fragment_request, c, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
-
+        super.onViewCreated(view,savedInstanceState);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
-        if (activity != null && activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setTitle("My requests");
+        if (activity != null && activity.getSupportActionBar()!=null){
+            activity.getSupportActionBar().setTitle("My Resquests");
         }
     }
 }

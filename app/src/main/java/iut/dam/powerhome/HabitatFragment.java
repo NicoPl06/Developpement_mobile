@@ -1,123 +1,140 @@
 package iut.dam.powerhome;
 
+import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
-import java.util.*;
 
-import android.app.AlertDialog;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HabitatFragment extends Fragment {
 
+    private ListView listHabitats;
+    private HabitatAdapter adapter;
+    private List<Habitat> items = new ArrayList<>();
+    private static final String URL_API = "http://10.0.2.2/server/getHabitats.php";
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_habitats, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        ListView habitants = view.findViewById(R.id.listHabitats);
-        List<Habitat> items = new ArrayList<>();
-
-        List<Appliance> g1 = new ArrayList<>();
-        g1.add(new Appliance(1, "Machine à laver", "ML456", 200, ApplianceType.WASHING_MACHINE));
-        g1.add(new Appliance(2, "Aspirateur", "A500", 50, ApplianceType.VACUUM));
-        g1.add(new Appliance(3, "Climatisation", "CL200", 120, ApplianceType.CLIM));
-        g1.add(new Appliance(4, "Fer à repasser", "FR100", 90, ApplianceType.IRON));
-        items.add(new Habitat(1, "Gaëtan Leclair", 1, 45.0, g1));
-
-        List<Appliance> g2 = new ArrayList<>();
-        g2.add(new Appliance(5, "Machine à laver", "ML789", 180, ApplianceType.WASHING_MACHINE));
-        items.add(new Habitat(2, "Cédric Boudet", 1, 38.0, g2));
-
-        List<Appliance> g3 = new ArrayList<>();
-        g3.add(new Appliance(6, "Climatisation", "CL300", 110, ApplianceType.CLIM));
-        g3.add(new Appliance(7, "Aspirateur", "A700", 60, ApplianceType.VACUUM));
-        items.add(new Habitat(3, "Gaylord Thibodeaux", 2, 52.0, g3));
-
-        List<Appliance> g4 = new ArrayList<>();
-        g4.add(new Appliance(8, "Machine à laver", "ML287", 190, ApplianceType.WASHING_MACHINE));
-        g4.add(new Appliance(9, "Fer à repasser", "FR453", 85, ApplianceType.IRON));
-        g4.add(new Appliance(10, "Aspirateur", "A200", 60, ApplianceType.VACUUM));
-        items.add(new Habitat(4, "Adam Jacquinot", 3, 48.0, g4));
-
-        List<Appliance> g5 = new ArrayList<>();
-        g5.add(new Appliance(11, "Aspirateur", "A120", 55, ApplianceType.VACUUM));
-        items.add(new Habitat(5, "Abel Fresnel", 3, 54.0, g5));
-
-        HabitatAdapter adapter = new HabitatAdapter(
-                requireActivity(),
-                R.layout.item_habitat,
-                items
-        );
-        habitants.setAdapter(adapter);
-
-        habitants.setOnItemClickListener((parent, v, position, id) -> {
-            Habitat h = items.get(position);
-
-            AlertDialog.Builder b = new AlertDialog.Builder(requireContext());
-            b.setTitle(h.ResidentName);
-            LayoutInflater inflater = requireActivity().getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.dialog_habitat, null);
-            TextView txtSurface = dialogView.findViewById(R.id.txtSurface);
-            LinearLayout container = dialogView.findViewById(R.id.container);
-            txtSurface.setText("Surface : " + h.area + " m²");
-
-            // Couleur d'accentuation courante
-            int accentColor = ColorManager.getColor(requireContext());
-
-            // Couleur du titre (txtSurface)
-            txtSurface.setTextColor(accentColor);
-
-            for (Appliance a : h.appliances) {
-                View item = inflater.inflate(R.layout.item_appliance, container, false);
-                ImageView icon = item.findViewById(R.id.icon);
-                TextView txtName = item.findViewById(R.id.txtName);
-                TextView txtWatt = item.findViewById(R.id.txtWatt);
-
-                txtName.setText(a.Name);
-                txtWatt.setText(a.wattage + " W");
-
-                if (a.wattage < 100) {
-                    txtWatt.setTextColor(Color.parseColor("#FBC02D"));
-                } else if (a.wattage < 150) {
-                    txtWatt.setTextColor(Color.parseColor("#FB8C00"));
-                } else {
-                    txtWatt.setTextColor(Color.parseColor("#D32F2F"));
-                }
-
-                switch (a.type) {
-                    case WASHING_MACHINE: icon.setImageResource(R.drawable.ic_washing_machine); break;
-                    case VACUUM:          icon.setImageResource(R.drawable.ic_vacuum);          break;
-                    case CLIM:            icon.setImageResource(R.drawable.ic_clim);            break;
-                    case IRON:            icon.setImageResource(R.drawable.ic_iron);            break;
-                }
-
-                // ← Appliquer la couleur d'accentuation sur l'icône
-                icon.setColorFilter(accentColor, PorterDuff.Mode.SRC_IN);
-
-                container.addView(item);
-            }
-
-            b.setView(dialogView);
-            b.show();
-        });
+        listHabitats = view.findViewById(R.id.listHabitats);
+        adapter = new HabitatAdapter(requireActivity(), R.layout.item_habitat, items);
+        listHabitats.setAdapter(adapter);
+        loadDataFromDatabase();
+        listHabitats.setOnItemClickListener((parent, v, position, id) -> showDetails(items.get(position)));
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().setTitle("Habitats");
         }
+    }
+
+    private void loadDataFromDatabase() {
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_API,
+                response -> {
+                    try {
+                        JSONArray array = new JSONArray(response);
+                        items.clear();
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject obj = array.getJSONObject(i);
+                            int id = obj.optInt("id", 0);
+                            String fName = obj.optString("firstname", "");
+                            String lName = obj.optString("lastname", "");
+                            String residentName = (fName + " " + lName).trim();
+                            int floor = obj.optInt("floor", 0);
+                            double area = obj.optDouble("area", 0.0);
+
+                            List<Appliance> appliances = new ArrayList<>();
+                            if (!obj.isNull("appliances")) {
+                                JSONArray appArray = obj.getJSONArray("appliances");
+                                for (int j = 0; j < appArray.length(); j++) {
+                                    JSONObject appObj = appArray.getJSONObject(j);
+
+
+                                    String rawName = appObj.optString("Name", "Appareil");
+                                    if(rawName.equals("Appareil")) rawName = appObj.optString("name", "Appareil");
+
+                                    String displayName = rawName.contains(" (") ? rawName.split(" \\(")[0] : rawName;
+
+                                    appliances.add(new Appliance(
+                                            appObj.optInt("id", 0),
+                                            displayName,
+                                            appObj.optString("reference", ""),
+                                            appObj.optInt("wattage", 0),
+                                            ApplianceType.valueOfName(rawName) // On utilise le nom complet pour l'icône
+                                    ));
+                                }
+                            }
+                            items.add(new Habitat(id, residentName, floor, area, appliances));
+                        }
+                        adapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> Toast.makeText(getContext(), "Erreur serveur", Toast.LENGTH_SHORT).show());
+        queue.add(stringRequest);
+    }
+
+    private void showDetails(Habitat h) {
+        AlertDialog.Builder b = new AlertDialog.Builder(requireContext());
+        b.setTitle(h.ResidentName);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_habitat, null);
+        TextView txtSurface = dialogView.findViewById(R.id.txtSurface);
+        LinearLayout container = dialogView.findViewById(R.id.container);
+        txtSurface.setText("Surface : " + h.area + " m²");
+
+        for (Appliance a : h.appliances) {
+            View item = getLayoutInflater().inflate(R.layout.item_appliance, container, false);
+            ImageView icon = item.findViewById(R.id.icon);
+            TextView txtName = item.findViewById(R.id.txtName);
+            TextView txtWatt = item.findViewById(R.id.txtWatt);
+            txtName.setText(a.Name);
+            txtWatt.setText(a.wattage + " W");
+
+            if (a.wattage < 100) txtWatt.setTextColor(getResources().getColor(R.color.jaune));
+            else if (a.wattage < 150) txtWatt.setTextColor(getResources().getColor(R.color.orange));
+            else txtWatt.setTextColor(getResources().getColor(R.color.rouge));
+
+            if (a.type != null) {
+                switch (a.type) {
+                    case WASHING_MACHINE: icon.setImageResource(R.drawable.ic_washing_machine); break;
+                    case VACUUM: icon.setImageResource(R.drawable.ic_vacuum); break;
+                    case CLIM: icon.setImageResource(R.drawable.ic_clim); break;
+                    case IRON: icon.setImageResource(R.drawable.ic_iron); break;
+                }
+            }
+            container.addView(item);
+        }
+        b.setView(dialogView);
+        b.show();
     }
 }
