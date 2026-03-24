@@ -143,6 +143,7 @@
                 android:text="@string/nouveau_sur_jumia"/>
 
             <Button
+                android:id="@+id/btn_go_register"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/cree_un_compte"

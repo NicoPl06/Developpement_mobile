@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/dialog_choose_habitat.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="0dp"
+    android:background="@color/white">
+
+    <!-- ── En-tête coloré ────────────────────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/black"
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_home"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choisir votre habitat"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- ── Sous-titre ────────────────────────────────────────────────────── -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Créez un nouvel habitat ou rejoignez-en un existant."
+        android:textColor="@color/gris"
+        android:textSize="13sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="10dp" />
+
+    <!-- ── Sélecteur Créer / Rejoindre ───────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="#F0F0F0"
+        android:padding="4dp">
+
+        <Button
+            android:id="@+id/btn_create_habitat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Créer"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/orange"
+            app:cornerRadius="6dp" />
+
+        <Button
+            android:id="@+id/btn_join_habitat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Rejoindre"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:backgroundTint="#F0F0F0"
+            android:alpha="0.5"
+            app:cornerRadius="6dp" />
+    </LinearLayout>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!--  PANEL CRÉER UN HABITAT                                             -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/panel_create"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Surface (m²)"
+            android:textColor="@color/gris"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/et_habitat_area"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="ex : 45.5"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_spinner"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Étage"
+            android:textColor="@color/gris"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/et_habitat_floor"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="ex : 2"
+            android:inputType="number"
+            android:background="@drawable/bg_spinner"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btn_confirm_create"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Créer mon habitat"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:backgroundTint="@color/orange"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panel_join"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sélectionnez un habitat :"
+            android:textColor="@color/gris"
+            android:textSize="13sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tv_no_habitat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aucun habitat disponible pour le moment."
+            android:textColor="@color/rouge"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:paddingBottom="12dp"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/list_habitats"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:divider="#EEEEEE"
+            android:dividerHeight="1dp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+
+</LinearLayout>
