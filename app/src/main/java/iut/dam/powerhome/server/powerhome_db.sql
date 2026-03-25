@@ -179,3 +179,52 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- ============================================================
+-- MIGRATION : Système Bonus / Malus / Éco-coins / Réservations
+-- À ajouter à la fin de powerhome_db.sql
+-- ============================================================
+
+-- 1. Colonne éco-coins sur la table user
+ALTER TABLE `user`
+    ADD COLUMN `ecocoins` INT NOT NULL DEFAULT 0;
+
+-- 2. Table des créneaux de réservation (timeslot existe déjà, on la complète)
+--    Si la table timeslot est vide, on génère des créneaux sur 7 jours
+--    (ce script insère les créneaux pour les 7 prochains jours, 1h chaque)
+--    maxWattage = puissance max théorique de la résidence (somme de tous les appareils)
+--    Vous pouvez ajuster la valeur 2000 selon votre résidence.
+
+-- On vide d'abord pour repartir propre
+TRUNCATE TABLE `timeslot`;
+
+-- Insertion de créneaux : aujourd'hui + 6 jours, de 06h à 23h (18 créneaux/jour = 126 au total)
+INSERT INTO `timeslot` (`begin_time`, `end_time`, `maxWattage`)
+SELECT
+    DATE_ADD(DATE_ADD(CURDATE(), INTERVAL (t.day_offset) DAY), INTERVAL (t.hour_offset) HOUR) AS begin_time,
+    DATE_ADD(DATE_ADD(CURDATE(), INTERVAL (t.day_offset) DAY), INTERVAL (t.hour_offset + 1) HOUR) AS end_time,
+    2000 AS maxWattage
+FROM (
+    SELECT d.n AS day_offset, h.n AS hour_offset
+    FROM
+        (SELECT 0 AS n UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6) d,
+        (SELECT 6 AS n UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10
+         UNION SELECT 11 UNION SELECT 12 UNION SELECT 13 UNION SELECT 14 UNION SELECT 15
+         UNION SELECT 16 UNION SELECT 17 UNION SELECT 18 UNION SELECT 19 UNION SELECT 20
+         UNION SELECT 21 UNION SELECT 22) h
+) t
+ORDER BY t.day_offset, t.hour_offset;
+
+-- 3. Mise à jour de la table booking pour stocker les éco-coins gagnés/perdus
+ALTER TABLE `booking`
+    ADD COLUMN `ecocoins_delta` INT NOT NULL DEFAULT 0 COMMENT 'positif=bonus, négatif=malus',
+    ADD COLUMN `user_id` INT NOT NULL DEFAULT 0,
+    ADD COLUMN `booked_date` DATE NULL;
+
+-- Index pour accélérer les requêtes par user
+ALTER TABLE `booking`
+    ADD INDEX `idx_user` (`user_id`);
+
+-- Contrainte FK vers user
+ALTER TABLE `booking`
+    ADD CONSTRAINT `fk_booking_user` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE;

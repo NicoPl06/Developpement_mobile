@@ -76,6 +76,8 @@ public class HabitatActivity_Frag extends AppCompatActivity
         else if (id == R.id.nav_requests)  fragment = new RequestFragment();
         else if (id == R.id.nav_settings)  fragment = new SettingsFragment();
         else if (id == R.id.nav_Log_out)   fragment = new LogOutFragment();
+        else if (id == R.id.nav_calendar)     fragment = new CalendarFragment();
+        else if (id == R.id.nav_my_bookings)  fragment = new MyBookingsFragment();
 
         if (fragment != null) loadFragment(fragment);
         drawerLayout.closeDrawers();

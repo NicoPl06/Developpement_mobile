@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         StringRequest request = new StringRequest(Request.Method.POST, URL_REGISTER,
                 response -> {
+                    android.util.Log.d("RAW_RESPONSE", response);
                     try {
                         JSONObject json = new JSONObject(response);
                         if (json.optString("status").equals("success")) {
