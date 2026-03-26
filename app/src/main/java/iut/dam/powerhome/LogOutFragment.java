@@ -1,6 +1,7 @@
 package iut.dam.powerhome;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,36 +20,35 @@ public class LogOutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup c, Bundle b) {
         View view = inflater.inflate(R.layout.fragment_log_out, c, false);
-
         Button buttonLogOut = view.findViewById(R.id.btn_logout);
-
-
 
         buttonLogOut.setOnClickListener(v -> {
             Snackbar snackbar = Snackbar.make(view, "Voulez-vous vraiment vous déconnecter ?", Snackbar.LENGTH_LONG);
-
-            snackbar.setAction("OUI", view1 -> {
-
-                procederDeconnexion();
-            });
+            snackbar.setAction("OUI", view1 -> procederDeconnexion());
             snackbar.show();
         });
 
         return view;
     }
-    private void procederDeconnexion() {
-        Toast.makeText(getContext(), "Déconnexion réussie !", Toast.LENGTH_SHORT).show();
 
+    private void procederDeconnexion() {
         if (getActivity() != null) {
+            Configuration config = getResources().getConfiguration();
+            config.fontScale = 1.0f;
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+            Toast.makeText(getContext(), "Déconnexion réussie !", Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             getActivity().finish();
         }
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        super.onViewCreated(view,savedInstanceState);
+        super.onViewCreated(view, savedInstanceState);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null && activity.getSupportActionBar()!=null){
             activity.getSupportActionBar().setTitle("Log out");

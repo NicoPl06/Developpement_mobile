@@ -22,9 +22,8 @@ public class HabitatActivity_Frag extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Restaurer la fontScale sauvegardée
-        SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        float scale = prefs.getFloat("fontScale", 1.0f);
+        SharedPreferences appPrefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        float scale = appPrefs.getFloat("fontScale", 1.0f);
         Configuration config = getResources().getConfiguration();
         config.fontScale = scale;
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
@@ -48,8 +47,10 @@ public class HabitatActivity_Frag extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Appliquer la couleur sauvegardée dès le démarrage
-        applyAccentColor(ColorManager.getColor(this));
+        SharedPreferences sessionPrefs = getSharedPreferences("SESSIONS", MODE_PRIVATE);
+        int userId = sessionPrefs.getInt("user_id", -1);
+
+        applyAccentColor(ColorManager.getColor(this, userId));
 
         if (savedInstanceState == null) {
             loadFragment(new HabitatFragment());
@@ -57,25 +58,27 @@ public class HabitatActivity_Frag extends AppCompatActivity
         }
     }
 
-    /**
-     * Applique la couleur d'accentuation à la toolbar et au header de navigation.
-     * Appelé au démarrage ET depuis SettingsFragment.
-     */
     public void applyAccentColor(int color) {
-        toolbar.setBackgroundColor(color);
+        if (toolbar != null) {
+            toolbar.setBackgroundColor(color);
+        }
         android.view.View header = navigationView.getHeaderView(0);
-        if (header != null) header.setBackgroundColor(color);
+        if (header != null) {
+            header.setBackgroundColor(color);
+        }
+        getWindow().setStatusBarColor(color);
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         Fragment fragment = null;
         int id = item.getItemId();
-        if      (id == R.id.nav_habitats)  fragment = new HabitatFragment();
-        else if (id == R.id.nav_home)      fragment = new HomeFragment();
-        else if (id == R.id.nav_requests)  fragment = new RequestFragment();
-        else if (id == R.id.nav_settings)  fragment = new SettingsFragment();
-        else if (id == R.id.nav_Log_out)   fragment = new LogOutFragment();
+
+        if      (id == R.id.nav_habitats)     fragment = new HabitatFragment();
+        else if (id == R.id.nav_home)         fragment = new HomeFragment();
+        else if (id == R.id.nav_requests)     fragment = new RequestFragment();
+        else if (id == R.id.nav_settings)     fragment = new SettingsFragment();
+        else if (id == R.id.nav_Log_out)      fragment = new LogOutFragment();
         else if (id == R.id.nav_calendar)     fragment = new CalendarFragment();
         else if (id == R.id.nav_my_bookings)  fragment = new MyBookingsFragment();
 

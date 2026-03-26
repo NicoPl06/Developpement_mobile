@@ -19,6 +19,7 @@ public class ColorPickerDialog extends DialogFragment {
     }
 
     private OnColorSelectedListener listener;
+    private int userId;
 
     private static final String[] NAMES = {
             "Forêt", "Océan", "Violet", "Ardoise", "Rubis",
@@ -29,8 +30,9 @@ public class ColorPickerDialog extends DialogFragment {
             "#283593", "#00695C", "#E65100", "#AD1457", "#424242"
     };
 
-    public static ColorPickerDialog newInstance(OnColorSelectedListener l) {
+    public static ColorPickerDialog newInstance(int userId, OnColorSelectedListener l) {
         ColorPickerDialog d = new ColorPickerDialog();
+        d.userId = userId;
         d.listener = l;
         return d;
     }
@@ -45,7 +47,7 @@ public class ColorPickerDialog extends DialogFragment {
         View preview    = root.findViewById(R.id.colorPreview);
         TextView tvName = root.findViewById(R.id.tvColorName);
 
-        int currentColor = ColorManager.getColor(ctx);
+        int currentColor = ColorManager.getColor(ctx, userId);
         preview.setBackgroundColor(currentColor);
 
         for (int i = 0; i < COLORS.length; i++) {

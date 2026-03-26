@@ -1,6 +1,8 @@
 package iut.dam.powerhome;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -110,7 +112,9 @@ public class HabitatFragment extends Fragment {
         TextView txtSurface   = dialogView.findViewById(R.id.txtSurface);
         LinearLayout container = dialogView.findViewById(R.id.container);
 
-        int accentColor = ColorManager.getColor(requireContext());
+        SharedPreferences prefs = requireContext().getSharedPreferences("SESSIONS", Context.MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", -1);
+        int accentColor = ColorManager.getColor(requireContext(), userId);
 
         txtSurface.setText("Surface : " + h.area + " m²");
         txtSurface.setTextColor(accentColor);

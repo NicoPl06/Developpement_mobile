@@ -1,5 +1,7 @@
 package iut.dam.powerhome;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,9 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +24,6 @@ public class SettingsFragment extends Fragment {
 
     private float currentBrightness = 0.5f;
     private final String[] languageCodes = {"en", "fr", "es"};
-    private final float[] fontScales = {0.85f, 0.95f, 1.0f, 1.15f, 1.30f};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup c, Bundle b) {
@@ -42,13 +41,14 @@ public class SettingsFragment extends Fragment {
         View colorSwatch = view.findViewById(R.id.colorSwatch);
         Button btnColor  = view.findViewById(R.id.btnPickColor);
 
-        // ---- Pastille couleur courante ----
-        colorSwatch.setBackgroundColor(ColorManager.getColor(requireContext()));
+        SharedPreferences prefs = requireContext().getSharedPreferences("SESSIONS", Context.MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", -1);
 
-        // ---- Color picker ----
+        colorSwatch.setBackgroundColor(ColorManager.getColor(requireContext(), userId));
+
         btnColor.setOnClickListener(v -> {
-            ColorPickerDialog.newInstance(color -> {
-                ColorManager.saveColor(requireContext(), color);
+            ColorPickerDialog.newInstance(userId, color -> {
+                ColorManager.saveColor(requireContext(), color, userId);
                 colorSwatch.setBackgroundColor(color);
                 if (getActivity() instanceof HabitatActivity_Frag) {
                     ((HabitatActivity_Frag) getActivity()).applyAccentColor(color);
@@ -56,7 +56,6 @@ public class SettingsFragment extends Fragment {
             }).show(getParentFragmentManager(), "colorPicker");
         });
 
-        // ---- Night mode ----
         nightBtn.setOnClickListener(v -> {
             int current = AppCompatDelegate.getDefaultNightMode();
             AppCompatDelegate.setDefaultNightMode(
@@ -67,7 +66,6 @@ public class SettingsFragment extends Fragment {
             requireActivity().recreate();
         });
 
-        // ---- Luminosité ----
         BtnP.setOnClickListener(v -> {
             currentBrightness += 0.1f;
             setScreenBrightness(currentBrightness);
@@ -77,11 +75,8 @@ public class SettingsFragment extends Fragment {
             setScreenBrightness(currentBrightness);
         });
 
-        // ---- Spinner langue ----
         String[] languageNames = {"English", "Français", "Español"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireContext(), android.R.layout.simple_spinner_item, languageNames
-        );
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, languageNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -121,35 +116,6 @@ public class SettingsFragment extends Fragment {
         Locale.setDefault(locale);
         Configuration config = new Configuration(requireContext().getResources().getConfiguration());
         config.setLocale(locale);
-        requireActivity().getBaseContext().getResources()
-                .updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
-        requireActivity().recreate();
-    }
-
-    private String getScaleLabel(int progress) {
-        switch (progress) {
-            case 0: return getString(R.string.display_size_small);
-            case 1: return getString(R.string.display_size_normal) + " -";
-            case 2: return getString(R.string.display_size_normal);
-            case 3: return getString(R.string.display_size_large);
-            case 4: return getString(R.string.display_size_xlarge);
-            default: return getString(R.string.display_size_normal);
-        }
-    }
-
-    private int findClosestIndex(float scale) {
-        int best = 2;
-        float minDiff = Float.MAX_VALUE;
-        for (int i = 0; i < fontScales.length; i++) {
-            float diff = Math.abs(fontScales[i] - scale);
-            if (diff < minDiff) { minDiff = diff; best = i; }
-        }
-        return best;
-    }
-
-    private void applyFontScale(float scale) {
-        Configuration config = new Configuration(requireActivity().getResources().getConfiguration());
-        config.fontScale = scale;
         requireActivity().getBaseContext().getResources()
                 .updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
         requireActivity().recreate();

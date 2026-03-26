@@ -2,6 +2,7 @@ package iut.dam.powerhome;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -23,14 +24,20 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Configuration config = getResources().getConfiguration();
+        config.fontScale = 1.0f;
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.login_activity);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         findViewById(R.id.btn_go_register).setOnClickListener(v ->
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class))
         );
@@ -66,18 +73,14 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(LoginActivity.this, HabitatActivity_Frag.class));
                             finish();
                         } else {
-                            String errorMsg = jsonResponse.optString("error", "Identifiants incorrects");
-                            Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), jsonResponse.optString("error", "Identifiants incorrects"), Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(getApplicationContext(), "Erreur de réponse du serveur", Toast.LENGTH_SHORT).show();
                     }
                 },
-                error -> {
-                    android.util.Log.e("VOLLEY", error.toString());
-                    Toast.makeText(getApplicationContext(), "Erreur réseau ou serveur inaccessible", Toast.LENGTH_SHORT).show();
-                }) {
+                error -> Toast.makeText(getApplicationContext(), "Erreur réseau", Toast.LENGTH_SHORT).show()) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();

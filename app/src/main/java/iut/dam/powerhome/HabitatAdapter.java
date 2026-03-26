@@ -1,6 +1,8 @@
 package iut.dam.powerhome;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +47,9 @@ public class HabitatAdapter extends ArrayAdapter<Habitat> {
         tvFloorLabel.setText("ETAGE");
 
         // Badge étage en couleur dynamique
-        tvFloorID.setBackgroundColor(ColorManager.getColor(activity));
+        SharedPreferences prefs = activity.getSharedPreferences("SESSIONS", Context.MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", -1);
+        tvFloorID.setBackgroundColor(ColorManager.getColor(activity, userId));
 
         int count = h.appliances.size();
         tvEquipements.setText(count + " " + (count > 1 ? "équipements" : "équipement"));
