@@ -1,6 +1,7 @@
 package iut.dam.powerhome;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Configuration config = getResources().getConfiguration();
+        config.fontScale = 1.0f;
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
 
