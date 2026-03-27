@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 26 mars 2026 à 16:56
+-- Généré le : ven. 27 mars 2026 à 14:17
 -- Version du serveur : 8.4.7
 -- Version de PHP : 8.3.28
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `appliance`;
 CREATE TABLE IF NOT EXISTS `appliance` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reference` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reference` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `wattage` int DEFAULT NULL,
   `habitat_id` int NOT NULL,
   PRIMARY KEY (`id`),
@@ -73,12 +73,21 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `order` int DEFAULT NULL,
   `bookedAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `ecocoins_delta` int NOT NULL DEFAULT '0',
+  `ecocoins_cost` int NOT NULL DEFAULT '8' COMMENT 'coins dépensés pour cette réservation',
   `user_id` int NOT NULL DEFAULT '0',
   `booked_date` date DEFAULT NULL,
   PRIMARY KEY (`appliance_id`,`timeslot_id`),
   KEY `fk_timeslot` (`timeslot_id`),
   KEY `idx_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `booking`
+--
+
+INSERT INTO `booking` (`appliance_id`, `timeslot_id`, `order`, `bookedAt`, `ecocoins_delta`, `ecocoins_cost`, `user_id`, `booked_date`) VALUES
+(15, 36, NULL, '2026-03-27 15:15:52', 10, 3, 7, '2026-03-28'),
+(16, 52, NULL, '2026-03-27 15:15:40', 10, 3, 7, '2026-03-29');
 
 -- --------------------------------------------------------
 
@@ -108,6 +117,89 @@ INSERT INTO `habitat` (`id`, `floor`, `area`, `user_id`) VALUES
 (41, 2, 42, 5),
 (42, 1, 65, 6),
 (43, 3, 285, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `habitat_request`
+--
+
+DROP TABLE IF EXISTS `habitat_request`;
+CREATE TABLE IF NOT EXISTS `habitat_request` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `requester_id` int NOT NULL COMMENT 'user qui demande à rejoindre',
+  `habitat_id` int NOT NULL COMMENT 'habitat visé',
+  `owner_id` int NOT NULL COMMENT 'user propriétaire de l habitat',
+  `status` enum('pending','accepted','refused') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_owner` (`owner_id`),
+  KEY `idx_requester` (`requester_id`),
+  KEY `fk_req_habitat` (`habitat_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `habitat_request`
+--
+
+INSERT INTO `habitat_request` (`id`, `requester_id`, `habitat_id`, `owner_id`, `status`, `created_at`) VALUES
+(1, 102, 43, 7, 'accepted', '2026-03-27 15:13:45');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `habitat_resident`
+--
+
+DROP TABLE IF EXISTS `habitat_resident`;
+CREATE TABLE IF NOT EXISTS `habitat_resident` (
+  `habitat_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `is_owner` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = propriétaire, 0 = co-résident',
+  `joined_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`habitat_id`,`user_id`),
+  KEY `fk_hr_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `habitat_resident`
+--
+
+INSERT INTO `habitat_resident` (`habitat_id`, `user_id`, `is_owner`, `joined_at`) VALUES
+(30, 1, 1, '2026-03-27 14:52:51'),
+(31, 2, 1, '2026-03-27 14:52:51'),
+(32, 3, 1, '2026-03-27 14:52:51'),
+(40, 4, 1, '2026-03-27 14:52:51'),
+(41, 5, 1, '2026-03-27 14:52:51'),
+(42, 6, 1, '2026-03-27 14:52:51'),
+(43, 7, 1, '2026-03-27 14:52:51'),
+(43, 102, 0, '2026-03-27 15:14:19');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE IF NOT EXISTS `notification` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL COMMENT 'destinataire',
+  `message` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_notif_user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `notification`
+--
+
+INSERT INTO `notification` (`id`, `user_id`, `message`, `is_read`, `created_at`) VALUES
+(1, 7, 'Charles Dupont souhaite rejoindre votre habitat.', 1, '2026-03-27 15:13:45'),
+(2, 102, 'Nicolas Plaisance a accepté votre demande. Vous faites maintenant partie de l\'habitat !', 0, '2026-03-27 15:14:19'),
+(3, 7, 'Charles Dupont a rejoint votre habitat. 🏠', 0, '2026-03-27 15:14:19');
 
 -- --------------------------------------------------------
 
@@ -258,30 +350,31 @@ INSERT INTO `timeslot` (`id`, `begin_time`, `end_time`, `maxWattage`) VALUES
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `firstname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `expired_at` datetime DEFAULT NULL,
   `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ecocoins` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `token`, `expired_at`, `phone`, `ecocoins`) VALUES
-(1, 'Gaëtan', 'Leclair', 'test@test.fr', 'test', '0623e4dd8abe63b0d6e8a37eb9321000', '2026-03-28 14:15:41', NULL, 0),
-(2, 'Cédric', 'Boudet', 'cedric@power.fr', 'test', NULL, NULL, NULL, 0),
-(3, 'Gaylord', 'Thibodeaux', 'gaylord@power.fr', 'test', NULL, NULL, NULL, 0),
-(4, 'Jérôme', 'Fessy', 'fessy@test.fr', 'test', '87471f6113e4fc57a3a4fab6cb22ab81', '2026-03-28 21:50:16', NULL, 0),
-(5, 'Laurent', 'Gustignano', 'gustignano@test.fr', 'test', NULL, NULL, NULL, 0),
-(6, 'Lenny', 'Masson', 'masson@test.fr', 'test', 'fb4e6af4474329ca866118b77ba74bd2', '2026-03-28 14:24:05', NULL, 0),
-(7, 'Nicolas', 'Plaisance', 'plaisance@test.fr', 'test', '0b51cdbb2e0de662f553ff95a07d6124', '2026-03-28 14:18:04', NULL, 0);
+(1, 'Gaëtan', 'Leclair', 'test@test.fr', 'test', '0623e4dd8abe63b0d6e8a37eb9321000', '2026-03-28 14:15:41', NULL, 100),
+(2, 'Cédric', 'Boudet', 'cedric@power.fr', 'test', NULL, NULL, NULL, 100),
+(3, 'Gaylord', 'Thibodeaux', 'gaylord@power.fr', 'test', NULL, NULL, NULL, 100),
+(4, 'Jérôme', 'Fessy', 'fessy@test.fr', 'test', '87471f6113e4fc57a3a4fab6cb22ab81', '2026-03-28 21:50:16', NULL, 100),
+(5, 'Laurent', 'Gustignano', 'gustignano@test.fr', 'test', NULL, NULL, NULL, 100),
+(6, 'Lenny', 'Masson', 'masson@test.fr', 'test', 'fb4e6af4474329ca866118b77ba74bd2', '2026-03-28 14:24:05', NULL, 100),
+(7, 'Nicolas', 'Plaisance', 'plaisance@test.fr', 'test', '0b51cdbb2e0de662f553ff95a07d6124', '2026-03-28 14:18:04', NULL, 114),
+(102, 'Charles', 'Dupont', 'dupont@test.fr', 'test', 'eda4ef9cbcc0237557d24ca4efa7b194', '2026-04-26 14:13:36', '+33 (France)', 100);
 
 --
 -- Contraintes pour les tables déchargées
@@ -306,6 +399,27 @@ ALTER TABLE `booking`
 --
 ALTER TABLE `habitat`
   ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `habitat_request`
+--
+ALTER TABLE `habitat_request`
+  ADD CONSTRAINT `fk_req_habitat` FOREIGN KEY (`habitat_id`) REFERENCES `habitat` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_req_owner` FOREIGN KEY (`owner_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_req_user` FOREIGN KEY (`requester_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `habitat_resident`
+--
+ALTER TABLE `habitat_resident`
+  ADD CONSTRAINT `fk_hr_habitat` FOREIGN KEY (`habitat_id`) REFERENCES `habitat` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_hr_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `notification`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `fk_notif_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
