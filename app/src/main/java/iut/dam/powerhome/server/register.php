@@ -12,13 +12,11 @@ if (!$db_con) {
     exit;
 }
 
-
 $firstname = trim($_POST['firstname'] ?? '');
 $lastname  = trim($_POST['lastname']  ?? '');
 $email     = trim($_POST['email']     ?? '');
 $password  = trim($_POST['password']  ?? '');
 $phone     = trim($_POST['phone']     ?? '');
-
 
 if (empty($firstname) || empty($lastname) || empty($email) || empty($password)) {
     echo json_encode(['status' => 'error', 'error' => 'Champs obligatoires manquants']);
@@ -29,7 +27,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode(['status' => 'error', 'error' => 'Email invalide']);
     exit;
 }
-
 
 $checkSql = "SELECT id FROM user WHERE email = ?";
 $stmt = mysqli_prepare($db_con, $checkSql);
@@ -44,7 +41,8 @@ if (mysqli_stmt_num_rows($stmt) > 0) {
 }
 mysqli_stmt_close($stmt);
 
-$insertSql = "INSERT INTO user (firstname, lastname, email, password, phone) VALUES (?, ?, ?, ?, ?)";
+// MISE À JOUR : Ajout de ecocoins avec la valeur 100 par défaut à l'inscription
+$insertSql = "INSERT INTO user (firstname, lastname, email, password, phone, ecocoins) VALUES (?, ?, ?, ?, ?, 100)";
 $stmt = mysqli_prepare($db_con, $insertSql);
 mysqli_stmt_bind_param($stmt, 'sssss', $firstname, $lastname, $email, $password, $phone);
 

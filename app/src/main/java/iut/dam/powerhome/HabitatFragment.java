@@ -70,9 +70,22 @@ public class HabitatFragment extends Fragment {
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject obj = array.getJSONObject(i);
                             int id = obj.optInt("id", 0);
-                            String fName = obj.optString("firstname", "");
-                            String lName = obj.optString("lastname", "");
-                            String residentName = (fName + " " + lName).trim();
+
+                            String proName = obj.optString("display_name", "");
+                            if (proName.isEmpty()) {
+                                String fName = obj.optString("firstname", "");
+                                String lName = obj.optString("lastname", "");
+                                proName = (fName + " " + lName).trim();
+                            }
+
+                            // Co-résidents
+                            List<String> coNames = new ArrayList<>();
+                            if (!obj.isNull("co_names")) {
+                                JSONArray coArr = obj.getJSONArray("co_names");
+                                for (int j = 0; j < coArr.length(); j++) {
+                                    coNames.add(coArr.getString(j));
+                                }
+                            }
                             int floor = obj.optInt("floor", 0);
                             double area = obj.optDouble("area", 0.0);
 
@@ -93,7 +106,8 @@ public class HabitatFragment extends Fragment {
                                     ));
                                 }
                             }
-                            items.add(new Habitat(id, residentName, floor, area, appliances));
+                            items.add(new Habitat(id, proName, coNames, floor, area, appliances));
+
                         }
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {

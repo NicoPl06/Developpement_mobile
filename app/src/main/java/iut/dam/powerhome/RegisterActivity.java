@@ -1,5 +1,6 @@
 package iut.dam.powerhome;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -20,10 +21,11 @@ import java.util.List;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String BASE_URL        = "http://10.0.2.2/server/";
-    private static final String URL_REGISTER    = BASE_URL + "register.php";
-    private static final String URL_GET_HABITATS= BASE_URL + "getHabitats.php";
-    private static final String URL_ASSIGN      = BASE_URL + "assignHabitat.php";
+    private static final String BASE_URL         = "http://10.0.2.2/server/";
+    private static final String URL_REGISTER     = BASE_URL + "register.php";
+    private static final String URL_GET_HABITATS = BASE_URL + "getHabitats.php";
+    private static final String URL_ASSIGN       = BASE_URL + "assignHabitat.php";
+    private static final String URL_JOIN_REQUEST = BASE_URL + "sendJoinRequest.php"; // Nouvelle URL
 
     private EditText etFirstname, etLastname, etEmail, etPassword, etPhone;
     private Spinner  spinnerIndicatif;
@@ -103,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(request);
     }
+
     private void fetchHabitatsAndShowDialog(int userId) {
         StringRequest request = new StringRequest(Request.Method.GET, URL_GET_HABITATS,
                 response -> {
@@ -119,13 +122,19 @@ public class RegisterActivity extends AppCompatActivity {
                             String lname = obj.optString("lastname", "");
                             String name  = (fname + " " + lname).trim();
                             if (name.isEmpty()) name = "Habitat #" + id;
-                            habitats.add(new Habitat(id, name, floor, area, new ArrayList<>()));
+
+                            // --- CORRECTION ICI ---
+                            // On crée une liste vide pour les co-résidents pour l'instant
+                            // (ou on la remplit si le JSON contient un champ "co_residents")
+                            List<String> coNames = new ArrayList<>();
+
+                            // On appelle le constructeur avec les 6 arguments
+                            habitats.add(new Habitat(id, name, coNames, floor, area, new ArrayList<>()));
                         }
 
                         showHabitatDialog(userId, habitats);
 
                     } catch (JSONException e) {
-
                         showHabitatDialog(userId, new ArrayList<>());
                     }
                 },
@@ -136,22 +145,22 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void showHabitatDialog(int userId, List<Habitat> habitats) {
-
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_choose_habitat, null);
 
-        Button  btnCreate     = dialogView.findViewById(R.id.btn_create_habitat);
-        Button  btnJoin       = dialogView.findViewById(R.id.btn_join_habitat);
-        View    panelCreate   = dialogView.findViewById(R.id.panel_create);
-        EditText etArea       = dialogView.findViewById(R.id.et_habitat_area);
-        EditText etFloor      = dialogView.findViewById(R.id.et_habitat_floor);
-        Button  btnConfirmCreate = dialogView.findViewById(R.id.btn_confirm_create);
-        View    panelJoin     = dialogView.findViewById(R.id.panel_join);
-        ListView listHabitats = dialogView.findViewById(R.id.list_habitats);
+        Button   btnCreate       = dialogView.findViewById(R.id.btn_create_habitat);
+        Button   btnJoin         = dialogView.findViewById(R.id.btn_join_habitat);
+        View     panelCreate     = dialogView.findViewById(R.id.panel_create);
+        EditText etArea          = dialogView.findViewById(R.id.et_habitat_area);
+        EditText etFloor         = dialogView.findViewById(R.id.et_habitat_floor);
+        Button   btnConfirmCreate = dialogView.findViewById(R.id.btn_confirm_create);
+        View     panelJoin       = dialogView.findViewById(R.id.panel_join);
+        ListView listHabitats    = dialogView.findViewById(R.id.list_habitats);
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(dialogView)
                 .setCancelable(false)
                 .create();
+
         btnCreate.setOnClickListener(v -> {
             panelCreate.setVisibility(View.VISIBLE);
             panelJoin.setVisibility(View.GONE);
@@ -182,19 +191,19 @@ public class RegisterActivity extends AppCompatActivity {
             String[] labels = new String[habitats.size()];
             for (int i = 0; i < habitats.size(); i++) {
                 Habitat h = habitats.get(i);
-                labels[i] = h.ResidentName + "  |  " + h.area + " m²  |  Étage " + h.floor;
+                labels[i] = h.getDisplayName() + "  |  " + h.area + " m²  |  Étage " + h.floor;
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_list_item_single_choice, labels);
             listHabitats.setAdapter(adapter);
             listHabitats.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
+            // MODIFICATION ICI : Appel à sendJoinRequest au lieu de assignHabitat
             listHabitats.setOnItemClickListener((parent, view, position, id) -> {
                 int selectedHabitatId = habitats.get(position).HabitatID;
-                assignHabitat(userId, "join", selectedHabitatId, 0, 0, dialog);
+                sendJoinRequest(userId, selectedHabitatId, dialog);
             });
         } else {
-
             btnJoin.setEnabled(false);
             btnJoin.setAlpha(0.3f);
             TextView tvNoHabitat = dialogView.findViewById(R.id.tv_no_habitat);
@@ -207,9 +216,49 @@ public class RegisterActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    // Nouvelle méthode pour envoyer la demande de rejoindre
+    private void sendJoinRequest(int userId, int habitatId, AlertDialog dialog) {
+        ProgressDialog waiting = new ProgressDialog(this);
+        waiting.setMessage("Demande envoyée au propriétaire...\nVous recevrez une notification lorsqu'il répondra.");
+        waiting.setCancelable(true);
+        waiting.show();
+
+        StringRequest req = new StringRequest(Request.Method.POST, URL_JOIN_REQUEST,
+                response -> {
+                    waiting.dismiss();
+                    try {
+                        JSONObject json = new JSONObject(response);
+                        if ("success".equals(json.optString("status"))) {
+                            dialog.dismiss();
+                            Toast.makeText(this, "Demande envoyée ! En attente de validation.", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(RegisterActivity.this, HabitatActivity_Frag.class));
+                            finish();
+                        } else {
+                            Toast.makeText(this, json.optString("error", "Erreur"), Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(this, "Réponse invalide", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    waiting.dismiss();
+                    Toast.makeText(this, "Erreur réseau", Toast.LENGTH_SHORT).show();
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> p = new HashMap<>();
+                p.put("requester_id", String.valueOf(userId));
+                p.put("habitat_id",   String.valueOf(habitatId));
+                return p;
+            }
+        };
+
+        Volley.newRequestQueue(this).add(req);
+    }
+
     private void assignHabitat(int userId, String action, int habitatId,
                                double area, int floor, AlertDialog dialog) {
-
         StringRequest request = new StringRequest(Request.Method.POST, URL_ASSIGN,
                 response -> {
                     try {

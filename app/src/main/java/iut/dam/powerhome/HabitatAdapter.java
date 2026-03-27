@@ -3,6 +3,7 @@ package iut.dam.powerhome;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,28 @@ public class HabitatAdapter extends ArrayAdapter<Habitat> {
 
         Habitat h = items.get(position);
 
-        tvResident.setText(h.ResidentName);
+        SpannableString spanName;
+        if (h.coNames.isEmpty()) {
+            spanName = new SpannableString(h.ResidentName);
+        } else {
+            String coStr = " & " + android.text.TextUtils.join(" & ", h.coNames);
+            String full  = h.ResidentName + coStr;
+            spanName = new SpannableString(full);
+            // Co-résidents en vert clair (#81C784) ou gris selon préférence
+            spanName.setSpan(
+                    new android.text.style.ForegroundColorSpan(android.graphics.Color.parseColor("#81C784")),
+                    h.ResidentName.length(),
+                    full.length(),
+                    android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            );
+            spanName.setSpan(
+                    new android.text.style.RelativeSizeSpan(0.88f),
+                    h.ResidentName.length(),
+                    full.length(),
+                    android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            );
+        }
+        tvResident.setText(spanName);
         tvFloorID.setText(String.valueOf(h.floor));
         tvFloorLabel.setText("ETAGE");
 
