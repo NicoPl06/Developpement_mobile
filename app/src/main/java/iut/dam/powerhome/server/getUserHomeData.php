@@ -1,10 +1,10 @@
 <?php
 header('Content-Type: application/json');
 
-$host = "localhost";
+$host   = "localhost";
 $dbname = "powerhome_db";
-$user = "root";
-$pass = "";
+$user   = "root";
+$pass   = "";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
@@ -14,12 +14,10 @@ try {
         exit;
     }
 
-    $userId = $_GET['id'];
+    $userId = intval($_GET['id']);
 
-    $stmt = $pdo->prepare("SELECT u.firstname, u.lastname, u.email, h.id as habitat_id, h.area, h.floor
-                           FROM user u
-                           LEFT JOIN habitat h ON u.id = h.user_id
-                           WHERE u.id = ?");
+    // Infos utilisateur
+    $stmt = $pdo->prepare("SELECT firstname, lastname, email FROM user WHERE id = ?");
     $stmt->execute([$userId]);
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -28,23 +26,45 @@ try {
         exit;
     }
 
+    // Chercher l'habitat via habitat_resident (proprio ET co-résident)
+    $habitatStmt = $pdo->prepare("
+        SELECT h.id AS habitat_id, h.area, h.floor
+        FROM habitat_resident hr
+        JOIN habitat h ON h.id = hr.habitat_id
+        WHERE hr.user_id = ?
+        LIMIT 1
+    ");
+    $habitatStmt->execute([$userId]);
+    $habitatRow = $habitatStmt->fetch(PDO::FETCH_ASSOC);
+
+    // Fallback : ancien système via habitat.user_id
+    if (!$habitatRow) {
+        $fallback = $pdo->prepare("SELECT id AS habitat_id, area, floor FROM habitat WHERE user_id = ?");
+        $fallback->execute([$userId]);
+        $habitatRow = $fallback->fetch(PDO::FETCH_ASSOC);
+    }
+
     $appliances = [];
-    if ($userData['habitat_id']) {
+    $area       = 0;
+    $floor      = 0;
+
+    if ($habitatRow) {
+        $area  = (float)$habitatRow['area'];
+        $floor = (int)$habitatRow['floor'];
+
         $stmtApp = $pdo->prepare("SELECT id, name, reference, wattage FROM appliance WHERE habitat_id = ?");
-        $stmtApp->execute([$userData['habitat_id']]);
+        $stmtApp->execute([$habitatRow['habitat_id']]);
         $appliances = $stmtApp->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    $response = [
-        "firstname" => $userData['firstname'],
-        "lastname" => $userData['lastname'],
-        "email" => $userData['email'],
-        "area" => (float)$userData['area'],
-        "floor" => (int)$userData['floor'],
+    echo json_encode([
+        "firstname"  => $userData['firstname'],
+        "lastname"   => $userData['lastname'],
+        "email"      => $userData['email'],
+        "area"       => $area,
+        "floor"      => $floor,
         "appliances" => $appliances
-    ];
-
-    echo json_encode($response);
+    ]);
 
 } catch (PDOException $e) {
     echo json_encode(["error" => $e->getMessage()]);
