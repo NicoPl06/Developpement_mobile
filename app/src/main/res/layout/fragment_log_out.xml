@@ -1,38 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- res/layout/fragment_log_out.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/settings_background"
-    android:padding="32dp">
+    android:fillViewport="true">
 
-    <TextView
-        android:text="@string/log_out"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/settings_text_primary"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" />
-
-    <TextView
-        android:text="Vous serez redirigé vers la page de connexion."
-        android:textSize="13sp"
-        android:textColor="@color/settings_text_secondary"
+        android:orientation="vertical"
         android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp" />
+        android:paddingTop="60dp"
+        android:paddingBottom="40dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp">
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/log_out"
-        android:backgroundTint="#C62828"
-        android:textColor="#FFFFFF"
-        android:paddingHorizontal="32dp"
-        style="@style/Widget.MaterialComponents.Button" />
-</LinearLayout>
+        <!-- Icône centrale -->
+        <LinearLayout
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/circle_green"
+            android:gravity="center"
+            android:layout_marginBottom="28dp">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_settings"
+                android:alpha="0.9" />
+        </LinearLayout>
+
+        <!-- Titre -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Déconnexion"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/settings_text_primary"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Sous-titre -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vous allez quitter votre session PowerHome."
+            android:textSize="14sp"
+            android:textColor="@color/settings_text_secondary"
+            android:gravity="center"
+            android:layout_marginBottom="6dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vos éco-coins et réservations sont sauvegardés."
+            android:textSize="13sp"
+            android:textColor="@color/settings_text_secondary"
+            android:gravity="center"
+            android:layout_marginBottom="40dp" />
+
+        <!-- Carte d'info éco-coins -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#E8F5E9"
+            android:padding="16dp"
+            android:layout_marginBottom="36dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🌿"
+                android:textSize="22sp"
+                android:layout_marginEnd="12dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Votre solde est conservé"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#1B5E20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reconnectez-vous pour continuer à cumuler des éco-coins."
+                    android:textSize="12sp"
+                    android:textColor="#388E3C" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Bouton Déconnexion -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Se déconnecter"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#C62828"
+            app:cornerRadius="12dp"
+            android:layout_marginBottom="12dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+    </LinearLayout>
+</ScrollView>

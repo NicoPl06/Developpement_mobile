@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choisir votre habitat"
+            android:text="@string/choose_your_habitat"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Créez un nouvel habitat ou rejoignez-en un existant."
+        android:text="@string/create_or_join"
         android:textColor="@color/gris"
         android:textSize="13sp"
         android:paddingStart="20dp"
@@ -59,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Créer"
+            android:text="@string/create"
             android:textSize="14sp"
             android:textColor="@color/white"
             android:backgroundTint="@color/orange"
@@ -70,7 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Rejoindre"
+            android:text="@string/join"
             android:textSize="14sp"
             android:textColor="@color/black"
             android:backgroundTint="#F0F0F0"
@@ -95,7 +95,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Surface (m²)"
+            android:text="@string/aream2"
             android:textColor="@color/gris"
             android:textSize="12sp"
             android:layout_marginBottom="4dp" />
@@ -104,7 +104,7 @@
             android:id="@+id/et_habitat_area"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="ex : 45.5"
+            android:hint="@string/ex_of_area"
             android:inputType="numberDecimal"
             android:background="@drawable/bg_spinner"
             android:paddingStart="12dp"
@@ -115,7 +115,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Étage"
+            android:text="@string/floor"
             android:textColor="@color/gris"
             android:textSize="12sp"
             android:layout_marginBottom="4dp" />
@@ -124,7 +124,7 @@
             android:id="@+id/et_habitat_floor"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="ex : 2"
+            android:hint="@string/ex_floor"
             android:inputType="number"
             android:background="@drawable/bg_spinner"
             android:paddingStart="12dp"
@@ -136,7 +136,7 @@
             android:id="@+id/btn_confirm_create"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Créer mon habitat"
+            android:text="@string/create_my_habitat"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:backgroundTint="@color/orange"
@@ -158,7 +158,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sélectionnez un habitat :"
+            android:text="@string/select_habitat"
             android:textColor="@color/gris"
             android:textSize="13sp"
             android:layout_marginBottom="8dp" />
@@ -167,7 +167,7 @@
             android:id="@+id/tv_no_habitat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aucun habitat disponible pour le moment."
+            android:text="@string/no_dispo"
             android:textColor="@color/rouge"
             android:textSize="13sp"
             android:gravity="center"

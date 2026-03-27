@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:text="🔔"
+            android:text="@string/logo_cloche"
             android:textSize="20sp"
             android:gravity="center"
             android:layout_marginEnd="12dp" />
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="?attr/colorOnSurface"
-                android:text="Notification..." />
+                android:text="@string/notification_points" />
 
             <TextView
                 android:id="@+id/tv_notif_time"
@@ -48,7 +48,7 @@
                 android:textSize="11sp"
                 android:textColor="@color/gris"
                 android:layout_marginTop="2dp"
-                android:text="Il y a 5 min" />
+                android:text="@string/il_y_a_5_min" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

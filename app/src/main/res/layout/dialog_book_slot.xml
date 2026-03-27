@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/tv_dialog_slot_title"
-            android:text="Réserver un créneau"
+            android:text="@string/book_slot"
             android:textColor="@color/white"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -32,7 +32,7 @@
             android:id="@+id/tv_dialog_ecocoin_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+10 🌿"
+            android:text="@string/_10"
             android:textColor="#A5D6A7"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -47,7 +47,7 @@
         android:paddingEnd="20dp"
         android:paddingTop="14dp"
         android:paddingBottom="4dp"
-        android:text="Créneau : 08h00 – 09h00"
+        android:text="@string/slot_08h00_09h00"
         android:textColor="?attr/colorOnSurface"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -60,7 +60,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingBottom="12dp"
-        android:text="Charge actuelle : 25 %  ✅ Créneau favorable"
+        android:text="@string/actual_charge"
         android:textColor="@color/gris"
         android:textSize="13sp" />
 
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="20dp"
         android:paddingBottom="6dp"
-        android:text="Choisir un appareil :"
+        android:text="@string/choose_device"
         android:textColor="?attr/colorOnSurface"
         android:textSize="14sp"
         android:textStyle="bold" />

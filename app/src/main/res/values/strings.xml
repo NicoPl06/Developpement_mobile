@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- res/values-en/strings.xml — English -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">PowerHome</string>
     <string name="app_name_login">PowerHome</string>
@@ -77,6 +77,56 @@
     <string name="nom">Last name</string>
     <string name="e_mail">E-mail</string>
     <string name="mobile">Mobile number</string>
+    <string name="book_slot">Book a time slot</string>
+    <string name="_10" translatable="false">+10 🌿</string>
+    <string name="actual_charge">Current charge: 25% ✅ Favorable slot</string>
+    <string name="choose_device">Choose a device:</string>
+    <string name="slot_08h00_09h00">Slot: 08:00 AM – 09:00 AM</string>
+    <string name="choose_your_habitat">Choose your habitat</string>
+    <string name="create_or_join">Create a new habitat or join an existing one.</string>
+    <string name="create">Create</string>
+    <string name="join">Join</string>
+    <string name="aream2">Surface area (sq m)</string>
+    <string name="ex_of_area" translatable="false">ex : 45.5</string>
+    <string name="ex_floor" translatable="false">ex : 2</string>
+    <string name="create_my_habitat">Create my habitat</string>
+    <string name="select_habitat">Select a habitat:</string>
+    <string name="no_dispo">No habitats available at the moment.</string>
+    <string name="calendar_of_consommation">Consumption calendar</string>
+    <string name="zero_eco_coins" translatable="false">0 éco-coins</string>
+    <string name="logo_eco_coins" translatable="false">🌿</string>
+    <string name="_0_30" translatable="false">0–30 %</string>
+    <string name="_30_70" translatable="false">30–70 %</string>
+    <string name="_70_100" translatable="false">70–100 %</string>
+    <string name="my_bookings">My bookings</string>
+    <string name="solde_eco_coins">Eco-coins balance</string>
+    <string name="zero" translatable="false">0</string>
+    <string name="coins" translatable="false">coins</string>
+    <string name="zero_book">No bookings</string>
+    <string name="logo_calendar" translatable="false">📅</string>
+    <string name="reserv_slot_from_calendar">Book a slot from the calendar</string>
+    <string name="My_notifs">My notifications</string>
+    <string name="notifications">Notifications</string>
+    <string name="demands">Requests received</string>
+    <string name="zero_notif">No notifications</string>
+    <string name="logo_cloche" translatable="false">🔔</string>
+    <string name="machine_laver" >Washing machine</string>
+    <string name="une_date" translatable="false">Mon, June 20 · 08:00 – 09:00</string>
+    <string name="wattage" translatable="false">210 W</string>
+    <string name="cancel_book">Cancel booking</string>
+    <string name="logo_home" translatable="false">🏠</string>
+    <string name="jean_dupont" translatable="false">Jean Dupont</string>
+    <string name="question_rejoindre_habitat">wants to join your habitat · Floor 2 · 45 sq m</string>
+    <string name="accepter">✓ Accept</string>
+    <string name="refuser">✕ Decline</string>
+    <string name="notification_points">Notification...</string>
+    <string name="il_y_a_5_min">5 min ago</string>
+    <string name="_08_00_09_00" translatable="false">08:00 – 09:00</string>
+    <string name="charge_0">Charge: 0%</string>
+    <string name="_0" translatable="false">0 %</string>
+    <string name="r_server">Book</string>
+    <string name="powerhome" translatable="false">PowerHome</string>
+    <string name="gestion_des_habitats">Habitat management</string>
 
     <string-array name="indicatifs">
         <item>+33 (France)</item>

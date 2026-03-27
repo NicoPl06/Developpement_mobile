@@ -43,7 +43,7 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="?attr/colorOnSurface"
-                    android:text="Machine à laver" />
+                    android:text="@string/machine_laver" />
 
                 <TextView
                     android:id="@+id/tv_booking_time"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     android:textColor="@color/gris"
-                    android:text="Lun. 20 juin · 08:00 – 09:00" />
+                    android:text="@string/une_date" />
 
                 <TextView
                     android:id="@+id/tv_booking_watt"
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="11sp"
                     android:textColor="@color/gris"
-                    android:text="210 W" />
+                    android:text="@string/wattage" />
             </LinearLayout>
 
             <TextView
@@ -73,7 +73,7 @@
                 android:paddingBottom="4dp"
                 android:textSize="13sp"
                 android:textStyle="bold"
-                android:text="+10" />
+                android:text="@string/_10" />
 
         </LinearLayout>
 
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="8dp"
-            android:text="Annuler la réservation"
+            android:text="@string/cancel_book"
             android:textColor="#EF5350"
             android:textSize="13sp"
             app:icon="@android:drawable/ic_menu_close_clear_cancel"
