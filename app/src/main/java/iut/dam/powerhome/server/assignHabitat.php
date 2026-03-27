@@ -15,10 +15,10 @@ try {
 }
 
 $userId    = intval($_POST['user_id']    ?? 0);
-$action    = trim($_POST['action']       ?? '');   // "create" ou "join"
-$habitatId = intval($_POST['habitat_id'] ?? 0);    // utilisé si action = "join"
-$area      = floatval($_POST['area']     ?? 0);    // utilisé si action = "create"
-$floor     = intval($_POST['floor']      ?? 0);    // utilisé si action = "create"
+$action    = trim($_POST['action']       ?? '');
+$habitatId = intval($_POST['habitat_id'] ?? 0);
+$area      = floatval($_POST['area']     ?? 0);
+$floor     = intval($_POST['floor']      ?? 0);
 
 if ($userId <= 0) {
     echo json_encode(['status' => 'error', 'error' => 'Utilisateur invalide']);
@@ -26,7 +26,6 @@ if ($userId <= 0) {
 }
 
 if ($action === 'create') {
-    // Créer un nouvel habitat et le lier à l'utilisateur
     $stmt = $pdo->prepare("INSERT INTO habitat (area, floor, user_id) VALUES (?, ?, ?)");
     $stmt->execute([$area, $floor, $userId]);
     $newHabitatId = $pdo->lastInsertId();
@@ -34,9 +33,6 @@ if ($action === 'create') {
     echo json_encode(['status' => 'success', 'habitat_id' => $newHabitatId]);
 
 } elseif ($action === 'join') {
-    // Rejoindre = copier les dimensions de l'habitat choisi
-    // et créer une nouvelle ligne habitat pour cet utilisateur
-    // (contrainte UNIQUE user_id interdit de partager une ligne)
     if ($habitatId <= 0) {
         echo json_encode(['status' => 'error', 'error' => 'Habitat invalide']);
         exit;

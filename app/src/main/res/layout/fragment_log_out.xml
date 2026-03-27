@@ -16,7 +16,6 @@
         android:paddingStart="32dp"
         android:paddingEnd="32dp">
 
-        <!-- Icône centrale -->
         <LinearLayout
             android:layout_width="96dp"
             android:layout_height="96dp"
@@ -31,7 +30,6 @@
                 android:alpha="0.9" />
         </LinearLayout>
 
-        <!-- Titre -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +39,6 @@
             android:textColor="@color/settings_text_primary"
             android:layout_marginBottom="10dp" />
 
-        <!-- Sous-titre -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +57,6 @@
             android:gravity="center"
             android:layout_marginBottom="40dp" />
 
-        <!-- Carte d'info éco-coins -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,7 +95,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Bouton Déconnexion -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"

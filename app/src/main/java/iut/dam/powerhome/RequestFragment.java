@@ -110,7 +110,6 @@ public class RequestFragment extends Fragment {
             try {
                 JSONObject json = new JSONObject(response);
 
-                // Notifications
                 notifList.clear();
                 JSONArray notifs = json.getJSONArray("notifications");
                 for (int i = 0; i < notifs.length(); i++) {
@@ -122,7 +121,6 @@ public class RequestFragment extends Fragment {
                     ));
                 }
 
-                // Demandes
                 reqList.clear();
                 JSONArray reqs = json.getJSONArray("requests");
                 for (int i = 0; i < reqs.length(); i++) {
@@ -139,7 +137,6 @@ public class RequestFragment extends Fragment {
                 notifAdapter.notifyDataSetChanged();
                 reqAdapter.notifyDataSetChanged();
 
-                // Badge demandes en attente
                 if (!reqList.isEmpty()) {
                     tvNotifCount.setVisibility(View.VISIBLE);
                     tvNotifCount.setText(String.valueOf(reqList.size()));
@@ -184,8 +181,6 @@ public class RequestFragment extends Fragment {
         Volley.newRequestQueue(requireContext()).add(post);
     }
 
-    // ────────── Modèles ──────────
-
     public static class NotifItem {
         public String message, createdAt;
         public boolean isUnread;
@@ -200,8 +195,6 @@ public class RequestFragment extends Fragment {
             this.id=id; this.requesterName=name.trim(); this.habitatId=hId; this.floor=floor; this.area=area;
         }
     }
-
-    // ────────── Adapter Notifications ──────────
 
     public static class NotifAdapter extends RecyclerView.Adapter<NotifAdapter.NVH> {
         private final List<NotifItem> list;
@@ -218,14 +211,12 @@ public class RequestFragment extends Fragment {
             NotifItem n = list.get(pos);
             h.tvMessage.setText(n.message);
 
-            // Formater la date : "2026-03-27 14:30:00" → "27/03 à 14:30"
             String time = n.createdAt;
             if (time.length() >= 16) {
                 time = time.substring(8,10) + "/" + time.substring(5,7) + " à " + time.substring(11,16);
             }
             h.tvTime.setText(time);
 
-            // Non-lue : fond légèrement coloré
             h.itemView.setAlpha(n.isUnread ? 1f : 0.75f);
         }
 
@@ -240,8 +231,6 @@ public class RequestFragment extends Fragment {
             }
         }
     }
-
-    // ────────── Adapter Demandes ──────────
 
     public interface OnRespondListener {
         void onRespond(JoinRequest req, boolean accept);

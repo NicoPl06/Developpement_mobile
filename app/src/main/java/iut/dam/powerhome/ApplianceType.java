@@ -6,7 +6,6 @@ public enum ApplianceType {
         if (name == null) return null;
         String n = name.trim().toLowerCase();
 
-        // On cherche des mots-clés dans le nom
         if (n.contains("machine") || n.contains("washing")) return WASHING_MACHINE;
         if (n.contains("aspirateur") || n.contains("vacuum") || n.contains("dyson")) return VACUUM;
         if (n.contains("clim")) return CLIM;

@@ -78,7 +78,6 @@ public class HabitatFragment extends Fragment {
                                 proName = (fName + " " + lName).trim();
                             }
 
-                            // Co-résidents
                             List<String> coNames = new ArrayList<>();
                             if (!obj.isNull("co_names")) {
                                 JSONArray coArr = obj.getJSONArray("co_names");
@@ -148,16 +147,21 @@ public class HabitatFragment extends Fragment {
 
             if (a.type != null) {
                 switch (a.type) {
-                    case WASHING_MACHINE: icon.setImageResource(R.drawable.ic_washing_machine); break;
-                    case VACUUM:          icon.setImageResource(R.drawable.ic_vacuum);          break;
-                    case CLIM:            icon.setImageResource(R.drawable.ic_clim);            break;
-                    case IRON:            icon.setImageResource(R.drawable.ic_iron);            break;
+                    case WASHING_MACHINE:
+                        icon.setImageResource(R.drawable.ic_washing_machine);
+                        break;
+                    case VACUUM:
+                        icon.setImageResource(R.drawable.ic_vacuum);
+                        break;
+                    case CLIM:
+                        icon.setImageResource(R.drawable.ic_clim);
+                        break;
+                    case IRON:
+                        icon.setImageResource(R.drawable.ic_iron);
+                        break;
                 }
             }
-
-            // Couleur dynamique sur les icônes
             icon.setColorFilter(accentColor, PorterDuff.Mode.SRC_IN);
-
             container.addView(item);
         }
 

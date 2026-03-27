@@ -13,7 +13,6 @@ try {
         $wattage = $_POST['wattage'];
         $reference = $_POST['reference'] ?? "";
 
-        // 1. On récupère l'habitat_id lié à cet utilisateur
         $sqlHabitat = "SELECT id FROM habitat WHERE user_id = ?";
         $stmtHab = $pdo->prepare($sqlHabitat);
         $stmtHab->execute([$userId]);
@@ -22,7 +21,6 @@ try {
         if ($habitat) {
             $habitatId = $habitat['id'];
 
-            // 2. Insertion dans la table appliance
             $sql = "INSERT INTO appliance (name, reference, wattage, habitat_id) VALUES (?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
 

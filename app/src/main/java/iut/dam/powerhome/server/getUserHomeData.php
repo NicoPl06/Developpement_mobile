@@ -16,7 +16,6 @@ try {
 
     $userId = intval($_GET['id']);
 
-    // Infos utilisateur
     $stmt = $pdo->prepare("SELECT firstname, lastname, email FROM user WHERE id = ?");
     $stmt->execute([$userId]);
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,7 +25,6 @@ try {
         exit;
     }
 
-    // Chercher l'habitat via habitat_resident (proprio ET co-résident)
     $habitatStmt = $pdo->prepare("
         SELECT h.id AS habitat_id, h.area, h.floor
         FROM habitat_resident hr
@@ -37,7 +35,6 @@ try {
     $habitatStmt->execute([$userId]);
     $habitatRow = $habitatStmt->fetch(PDO::FETCH_ASSOC);
 
-    // Fallback : ancien système via habitat.user_id
     if (!$habitatRow) {
         $fallback = $pdo->prepare("SELECT id AS habitat_id, area, floor FROM habitat WHERE user_id = ?");
         $fallback->execute([$userId]);

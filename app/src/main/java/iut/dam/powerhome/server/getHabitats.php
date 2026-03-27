@@ -1,5 +1,4 @@
 <?php
-// getHabitats.php — version multi-résidents
 header('Content-Type: application/json; charset=utf-8');
 
 $host = 'localhost'; $db = 'powerhome_db'; $user = 'root'; $pass = '';
@@ -8,13 +7,11 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) { die(json_encode(["error" => $e->getMessage()])); }
 
-// Récupérer tous les habitats avec leur(s) résident(s) via habitat_resident
 $sql = "SELECT h.id, h.area, h.floor FROM habitat h ORDER BY h.id";
 $stmt = $pdo->query($sql);
 $habitats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($habitats as &$h) {
-    // Résidents (propriétaire + co-résidents)
     $resStmt = $pdo->prepare("
         SELECT u.id, u.firstname, u.lastname, hr.is_owner
         FROM habitat_resident hr
@@ -25,7 +22,6 @@ foreach ($habitats as &$h) {
     $resStmt->execute([$h['id']]);
     $residents = $resStmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Si habitat_resident vide (avant migration), fallback sur habitat.user_id
     if (empty($residents)) {
         $fallback = $pdo->prepare("SELECT id, firstname, lastname FROM user WHERE id = (SELECT user_id FROM habitat WHERE id = ?)");
         $fallback->execute([$h['id']]);
@@ -35,7 +31,6 @@ foreach ($habitats as &$h) {
 
     $h['residents'] = $residents;
 
-    // Nom affiché : "Plaisance" ou "Plaisance & Lenny" (prénom du co-résident)
     $ownerName = '';
     $coNames   = [];
     foreach ($residents as $r) {
@@ -43,9 +38,8 @@ foreach ($habitats as &$h) {
         else $coNames[] = $r['firstname'];
     }
     $h['display_name'] = $ownerName;
-    $h['co_names']     = $coNames; // prénoms des co-résidents, affichés en gris côté Android
+    $h['co_names']     = $coNames;
 
-    // Appareils
     $appStmt = $pdo->prepare("SELECT id, name AS Name, reference, wattage FROM appliance WHERE habitat_id = ?");
     $appStmt->execute([$h['id']]);
     $h['appliances'] = $appStmt->fetchAll(PDO::FETCH_ASSOC);

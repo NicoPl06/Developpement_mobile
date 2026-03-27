@@ -164,4 +164,7 @@
         <item>+34 (España)</item>
     </string-array>
 
+    <string name="calendrier">Calendario</string>
+    <string name="mes_r_servations">Mis reservas</string>
+
 </resources>

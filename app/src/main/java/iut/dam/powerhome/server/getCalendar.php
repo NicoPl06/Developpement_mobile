@@ -1,7 +1,4 @@
 <?php
-// getCalendar.php
-// Retourne les créneaux des 7 prochains jours avec leur taux de charge (%)
-// GET params: (aucun obligatoire)
 header('Content-Type: application/json; charset=utf-8');
 
 $host = 'localhost';
@@ -17,7 +14,6 @@ try {
     exit;
 }
 
-// Récupère tous les créneaux à partir d'aujourd'hui (7 jours)
 $sql = "
     SELECT
         t.id,

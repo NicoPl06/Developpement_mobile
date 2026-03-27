@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="?attr/colorSurface">
 
-    <!-- En-tête avec solde éco-coins -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +24,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!-- Carte solde éco-coins -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +72,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Liste des réservations -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_my_bookings"
         android:layout_width="match_parent"
@@ -84,7 +81,6 @@
         android:paddingBottom="16dp"
         android:clipToPadding="false" />
 
-    <!-- État vide -->
     <LinearLayout
         android:id="@+id/ll_empty_bookings"
         android:layout_width="match_parent"

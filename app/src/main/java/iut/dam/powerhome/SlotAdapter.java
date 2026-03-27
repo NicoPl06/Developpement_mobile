@@ -38,13 +38,10 @@ public class SlotAdapter extends RecyclerView.Adapter<SlotAdapter.SlotViewHolder
     public void onBindViewHolder(@NonNull SlotViewHolder h, int position) {
         TimeSlot slot = slots.get(position);
 
-        // Formatage heure : "2026-06-20 08:00:00" → "08:00 – 09:00"
         String begin = slot.begin_time.length() >= 16 ? slot.begin_time.substring(11, 16) : slot.begin_time;
         String end   = slot.end_time.length()   >= 16 ? slot.end_time.substring(11, 16)   : slot.end_time;
         h.tvTime.setText(begin + " – " + end);
         h.tvLoad.setText("Charge : " + slot.percent + " %");
-
-        // ProgressBar et couleur
         h.pbSlot.setProgress(slot.percent);
         h.tvPercent.setText(slot.percent + " %");
 
@@ -65,16 +62,11 @@ public class SlotAdapter extends RecyclerView.Adapter<SlotAdapter.SlotViewHolder
                 break;
         }
 
-        // Barre de couleur à gauche
         h.colorBar.setBackgroundColor(barColor);
-
-        // Tint de la ProgressBar
         h.pbSlot.setProgressTintList(android.content.res.ColorStateList.valueOf(barColor));
         h.pbSlot.setProgressBackgroundTintList(android.content.res.ColorStateList.valueOf(barBg));
-
         h.tvPercent.setTextColor(barColor);
         h.tvLoad.setTextColor(barColor);
-
         h.btnBook.setOnClickListener(v -> listener.onBookClick(slot));
     }
 

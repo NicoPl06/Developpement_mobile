@@ -41,7 +41,6 @@ if (mysqli_stmt_num_rows($stmt) > 0) {
 }
 mysqli_stmt_close($stmt);
 
-// MISE À JOUR : Ajout de ecocoins avec la valeur 100 par défaut à l'inscription
 $insertSql = "INSERT INTO user (firstname, lastname, email, password, phone, ecocoins) VALUES (?, ?, ?, ?, ?, 100)";
 $stmt = mysqli_prepare($db_con, $insertSql);
 mysqli_stmt_bind_param($stmt, 'sssss', $firstname, $lastname, $email, $password, $phone);

@@ -21,12 +21,12 @@
         <item
             android:id="@+id/nav_calendar"
             android:icon="@drawable/ic_calendar"
-            android:title="Calendrier" />
+            android:title="@string/calendrier" />
 
         <item
             android:id="@+id/nav_my_bookings"
             android:icon="@drawable/ic_booking"
-            android:title="Mes réservations" />
+            android:title="@string/mes_r_servations" />
 
         <item
             android:id="@+id/nav_settings"

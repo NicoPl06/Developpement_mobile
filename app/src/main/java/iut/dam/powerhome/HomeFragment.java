@@ -59,7 +59,6 @@ public class HomeFragment extends Fragment {
 
         ImageButton btnAjoutApp = view.findViewById(R.id.btn_add_appliance);
 
-        // On change 'view' par 'v' ici pour éviter le conflit
         btnAjoutApp.setOnClickListener(v -> {
             View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.layout_add_appliance, null);
 
@@ -68,7 +67,6 @@ public class HomeFragment extends Fragment {
             EditText etWatt = dialogView.findViewById(R.id.et_appliance_wattage);
             EditText etRef = dialogView.findViewById(R.id.et_appliance_ref);
 
-            // Remplir le spinner avec les noms de l'Enum
             ApplianceType[] types = ApplianceType.values();
             String[] typeNames = new String[types.length];
             for (int i = 0; i < types.length; i++) {
@@ -82,13 +80,9 @@ public class HomeFragment extends Fragment {
             new AlertDialog.Builder(requireContext())
                     .setView(dialogView)
                     .setPositiveButton("Ajouter", (dialog, which) -> {
-                        String selectedType = spinner.getSelectedItem().toString(); // Ex: "CLIM"
+                        String selectedType = spinner.getSelectedItem().toString();
                         String typedName = etName.getText().toString().trim();
-
-                        // On construit un nom qui contient forcément le mot-clé pour l'Enum
-                        // Si l'utilisateur a écrit "Dyson", on enregistre "Dyson (VACUUM)"
                         String finalName = typedName.isEmpty() ? selectedType : typedName + " (" + selectedType + ")";
-
                         String watt = etWatt.getText().toString().trim();
                         String ref = etRef.getText().toString().trim();
 
@@ -120,10 +114,7 @@ public class HomeFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
 
-                    // AJOUTER CETTE LIGNE POUR ÉVITER LE CRASH
                     if (!isAdded() || getContext() == null) return;
-
-
 
                     try {
                         JSONObject json = new JSONObject(response);
@@ -139,15 +130,10 @@ public class HomeFragment extends Fragment {
                             for (int i = 0; i < apps.length(); i++) {
                                 JSONObject obj = apps.getJSONObject(i);
 
-                                // 1. On récupère le nom brut (ex: "Dyson (VACUUM)")
                                 String rawName = obj.optString("name", "Appliance");
 
-                                // 2. On nettoie pour l'affichage (on enlève tout ce qui est après la parenthèse)
-                                // "Dyson (VACUUM)" devient "Dyson"
                                 String displayName = rawName.contains(" (") ? rawName.split(" \\(")[0] : rawName;
 
-                                // 3. On ajoute à la liste :
-                                // On passe displayName pour le texte et rawName pour que l'Enum trouve l'icône
                                 applianceList.add(new Appliance(
                                         obj.getInt("id"),
                                         displayName,

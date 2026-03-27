@@ -198,9 +198,6 @@
                     android:backgroundTint="@color/white"
                     />
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

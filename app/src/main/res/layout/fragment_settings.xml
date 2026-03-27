@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp" />
 
-        <!-- ===== CARTE : Apparence ===== -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp" />
 
-                <!-- Mode nuit -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -98,7 +96,6 @@
                     android:background="@color/settings_divider"
                     android:layout_marginBottom="16dp" />
 
-                <!-- Couleur d'accentuation -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,7 +149,6 @@
                     android:background="@color/settings_divider"
                     android:layout_marginBottom="16dp" />
 
-                <!-- Luminosité -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -209,7 +205,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- ===== CARTE : Langue ===== -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

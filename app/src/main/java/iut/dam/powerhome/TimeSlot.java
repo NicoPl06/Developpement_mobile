@@ -2,10 +2,10 @@ package iut.dam.powerhome;
 
 public class TimeSlot {
     public int id;
-    public String begin_time;  // "2026-06-20 08:00:00"
+    public String begin_time;
     public String end_time;
-    public int percent;        // 0 à 100
-    public String color;       // "green", "orange", "red"
+    public int percent;
+    public String color;
     public int maxWattage;
     public int bookedWattage;
 

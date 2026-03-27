@@ -154,6 +154,7 @@
     <string name="votre_solde_est_conserv">Votre solde est conservé.</string>
     <string name="reconnectez_vous_pour_continuer_cumuler_des_co_coins">Reconnectez-vous pour continuer à cumuler des éco-coins.</string>
 
+
     <!-- ── Indicatifs téléphoniques ──────────────────────────────────────── -->
     <string-array name="indicatifs">
         <item>+33 (France)</item>
@@ -163,5 +164,8 @@
         <item>+44 (UK)</item>
         <item>+34 (Espagne)</item>
     </string-array>
+
+    <string name="calendrier">Calendrier</string>
+    <string name="mes_r_servations">Mes réservations</string>
 
 </resources>

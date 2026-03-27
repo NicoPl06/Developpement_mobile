@@ -50,7 +50,6 @@ public class HabitatAdapter extends ArrayAdapter<Habitat> {
             String coStr = " & " + android.text.TextUtils.join(" & ", h.coNames);
             String full  = h.ResidentName + coStr;
             spanName = new SpannableString(full);
-            // Co-résidents en vert clair (#81C784) ou gris selon préférence
             spanName.setSpan(
                     new android.text.style.ForegroundColorSpan(android.graphics.Color.parseColor("#81C784")),
                     h.ResidentName.length(),
@@ -68,7 +67,6 @@ public class HabitatAdapter extends ArrayAdapter<Habitat> {
         tvFloorID.setText(String.valueOf(h.floor));
         tvFloorLabel.setText("ETAGE");
 
-        // Badge étage en couleur dynamique
         SharedPreferences prefs = activity.getSharedPreferences("SESSIONS", Context.MODE_PRIVATE);
         int userId = prefs.getInt("user_id", -1);
         tvFloorID.setBackgroundColor(ColorManager.getColor(activity, userId));
@@ -90,7 +88,6 @@ public class HabitatAdapter extends ArrayAdapter<Habitat> {
             icon.setLayoutParams(params);
             layoutIcons.addView(icon);
         }
-
         return layout;
     }
 }

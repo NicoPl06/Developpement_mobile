@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Carte : Infos personnelles -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +59,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Carte : Mon habitat -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,7 +103,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Carte : Appareils -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -19,7 +19,6 @@
         android:gravity="center_vertical"
         android:padding="14dp">
 
-        <!-- Barre de couleur à gauche -->
         <View
             android:id="@+id/view_color_bar"
             android:layout_width="5dp"
@@ -27,7 +26,6 @@
             android:layout_marginEnd="12dp"
             android:background="@drawable/rounded_bar" />
 
-        <!-- Heure -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -52,7 +50,6 @@
                 android:text="@string/charge_0" />
         </LinearLayout>
 
-        <!-- ProgressBar charge -->
         <LinearLayout
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -78,7 +75,6 @@
                 android:text="@string/_0" />
         </LinearLayout>
 
-        <!-- Bouton réserver -->
         <Button
             android:id="@+id/btn_book"
             android:layout_width="wrap_content"

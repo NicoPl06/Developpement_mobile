@@ -164,4 +164,7 @@
         <item>+34 (Spain)</item>
     </string-array>
 
+    <string name="calendrier">Calendar</string>
+    <string name="mes_r_servations">My bookings</string>
+
 </resources>

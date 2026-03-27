@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.2.3
--- https://www.phpmyadmin.net/
---
--- Hôte : 127.0.0.1:3306
--- Généré le : ven. 27 mars 2026 à 14:17
--- Version du serveur : 8.4.7
--- Version de PHP : 8.3.28
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -17,15 +8,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de données : `powerhome_db`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `appliance`
---
 
 DROP TABLE IF EXISTS `appliance`;
 CREATE TABLE IF NOT EXISTS `appliance` (
@@ -38,9 +20,6 @@ CREATE TABLE IF NOT EXISTS `appliance` (
   KEY `fk_habitat` (`habitat_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `appliance`
---
 
 INSERT INTO `appliance` (`id`, `name`, `reference`, `wattage`, `habitat_id`) VALUES
 (1, 'Machine à laver ', 'WW90', 210, 30),
@@ -60,11 +39,6 @@ INSERT INTO `appliance` (`id`, `name`, `reference`, `wattage`, `habitat_id`) VAL
 (15, 'Fer à repasser ', 'TEF-10', 110, 43),
 (16, 'Aspirateur ', 'ROW-V2', 85, 43);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `booking`
---
 
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
@@ -81,19 +55,11 @@ CREATE TABLE IF NOT EXISTS `booking` (
   KEY `idx_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `booking`
---
 
 INSERT INTO `booking` (`appliance_id`, `timeslot_id`, `order`, `bookedAt`, `ecocoins_delta`, `ecocoins_cost`, `user_id`, `booked_date`) VALUES
 (15, 36, NULL, '2026-03-27 15:15:52', 10, 3, 7, '2026-03-28'),
 (16, 52, NULL, '2026-03-27 15:15:40', 10, 3, 7, '2026-03-29');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `habitat`
---
 
 DROP TABLE IF EXISTS `habitat`;
 CREATE TABLE IF NOT EXISTS `habitat` (
@@ -105,9 +71,6 @@ CREATE TABLE IF NOT EXISTS `habitat` (
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `habitat`
---
 
 INSERT INTO `habitat` (`id`, `floor`, `area`, `user_id`) VALUES
 (30, 1, 45, 1),
@@ -118,11 +81,6 @@ INSERT INTO `habitat` (`id`, `floor`, `area`, `user_id`) VALUES
 (42, 1, 65, 6),
 (43, 3, 285, 7);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `habitat_request`
---
 
 DROP TABLE IF EXISTS `habitat_request`;
 CREATE TABLE IF NOT EXISTS `habitat_request` (
@@ -138,18 +96,10 @@ CREATE TABLE IF NOT EXISTS `habitat_request` (
   KEY `fk_req_habitat` (`habitat_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `habitat_request`
---
 
 INSERT INTO `habitat_request` (`id`, `requester_id`, `habitat_id`, `owner_id`, `status`, `created_at`) VALUES
 (1, 102, 43, 7, 'accepted', '2026-03-27 15:13:45');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `habitat_resident`
---
 
 DROP TABLE IF EXISTS `habitat_resident`;
 CREATE TABLE IF NOT EXISTS `habitat_resident` (
@@ -161,9 +111,6 @@ CREATE TABLE IF NOT EXISTS `habitat_resident` (
   KEY `fk_hr_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `habitat_resident`
---
 
 INSERT INTO `habitat_resident` (`habitat_id`, `user_id`, `is_owner`, `joined_at`) VALUES
 (30, 1, 1, '2026-03-27 14:52:51'),
@@ -175,11 +122,6 @@ INSERT INTO `habitat_resident` (`habitat_id`, `user_id`, `is_owner`, `joined_at`
 (43, 7, 1, '2026-03-27 14:52:51'),
 (43, 102, 0, '2026-03-27 15:14:19');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `notification`
---
 
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE IF NOT EXISTS `notification` (
@@ -192,20 +134,12 @@ CREATE TABLE IF NOT EXISTS `notification` (
   KEY `idx_notif_user` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `notification`
---
 
 INSERT INTO `notification` (`id`, `user_id`, `message`, `is_read`, `created_at`) VALUES
 (1, 7, 'Charles Dupont souhaite rejoindre votre habitat.', 1, '2026-03-27 15:13:45'),
 (2, 102, 'Nicolas Plaisance a accepté votre demande. Vous faites maintenant partie de l\'habitat !', 0, '2026-03-27 15:14:19'),
 (3, 7, 'Charles Dupont a rejoint votre habitat. 🏠', 0, '2026-03-27 15:14:19');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `timeslot`
---
 
 DROP TABLE IF EXISTS `timeslot`;
 CREATE TABLE IF NOT EXISTS `timeslot` (
@@ -216,9 +150,6 @@ CREATE TABLE IF NOT EXISTS `timeslot` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `timeslot`
---
 
 INSERT INTO `timeslot` (`id`, `begin_time`, `end_time`, `maxWattage`) VALUES
 (1, '2026-03-26 06:00:00', '2026-03-26 07:00:00', 2000),
@@ -341,11 +272,6 @@ INSERT INTO `timeslot` (`id`, `begin_time`, `end_time`, `maxWattage`) VALUES
 (118, '2026-04-01 21:00:00', '2026-04-01 22:00:00', 2000),
 (119, '2026-04-01 22:00:00', '2026-04-01 23:00:00', 2000);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `user`
---
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
@@ -362,9 +288,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `user`
---
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `token`, `expired_at`, `phone`, `ecocoins`) VALUES
 (1, 'Gaëtan', 'Leclair', 'test@test.fr', 'test', '0623e4dd8abe63b0d6e8a37eb9321000', '2026-03-28 14:15:41', NULL, 100),
@@ -376,48 +299,26 @@ INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `password`, `token`,
 (7, 'Nicolas', 'Plaisance', 'plaisance@test.fr', 'test', '0b51cdbb2e0de662f553ff95a07d6124', '2026-03-28 14:18:04', NULL, 114),
 (102, 'Charles', 'Dupont', 'dupont@test.fr', 'test', 'eda4ef9cbcc0237557d24ca4efa7b194', '2026-04-26 14:13:36', '+33 (France)', 100);
 
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `appliance`
---
 ALTER TABLE `appliance`
   ADD CONSTRAINT `fk_habitat` FOREIGN KEY (`habitat_id`) REFERENCES `habitat` (`id`) ON DELETE CASCADE;
 
---
--- Contraintes pour la table `booking`
---
 ALTER TABLE `booking`
   ADD CONSTRAINT `fk_appliance` FOREIGN KEY (`appliance_id`) REFERENCES `appliance` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_booking_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_timeslot` FOREIGN KEY (`timeslot_id`) REFERENCES `timeslot` (`id`) ON DELETE CASCADE;
 
---
--- Contraintes pour la table `habitat`
---
 ALTER TABLE `habitat`
   ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
---
--- Contraintes pour la table `habitat_request`
---
 ALTER TABLE `habitat_request`
   ADD CONSTRAINT `fk_req_habitat` FOREIGN KEY (`habitat_id`) REFERENCES `habitat` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_req_owner` FOREIGN KEY (`owner_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_req_user` FOREIGN KEY (`requester_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
---
--- Contraintes pour la table `habitat_resident`
---
 ALTER TABLE `habitat_resident`
   ADD CONSTRAINT `fk_hr_habitat` FOREIGN KEY (`habitat_id`) REFERENCES `habitat` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_hr_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
---
--- Contraintes pour la table `notification`
---
 ALTER TABLE `notification`
   ADD CONSTRAINT `fk_notif_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 COMMIT;

@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="?attr/colorSurface">
 
-    <!-- En-tête éco-coins -->
     <LinearLayout
         android:id="@+id/header_ecocoins"
         android:layout_width="match_parent"
@@ -26,7 +25,6 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!-- Badge éco-coins -->
         <LinearLayout
             android:id="@+id/ll_ecocoins_badge"
             android:layout_width="wrap_content"
@@ -54,7 +52,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Légende -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -100,7 +97,6 @@
             android:textColor="?attr/colorOnSurface" />
     </LinearLayout>
 
-    <!-- Sélecteur de jour (scroll horizontal) -->
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,13 +113,11 @@
             android:paddingBottom="6dp" />
     </HorizontalScrollView>
 
-    <!-- Séparateur -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#EEEEEE" />
 
-    <!-- Liste des créneaux -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_slots"
         android:layout_width="match_parent"
@@ -133,7 +127,6 @@
         android:paddingBottom="80dp"
         android:clipToPadding="false" />
 
-    <!-- Loading indicator -->
     <ProgressBar
         android:id="@+id/progressbar_calendar"
         android:layout_width="wrap_content"

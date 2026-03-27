@@ -122,13 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String lname = obj.optString("lastname", "");
                             String name  = (fname + " " + lname).trim();
                             if (name.isEmpty()) name = "Habitat #" + id;
-
-                            // --- CORRECTION ICI ---
-                            // On crée une liste vide pour les co-résidents pour l'instant
-                            // (ou on la remplit si le JSON contient un champ "co_residents")
                             List<String> coNames = new ArrayList<>();
-
-                            // On appelle le constructeur avec les 6 arguments
                             habitats.add(new Habitat(id, name, coNames, floor, area, new ArrayList<>()));
                         }
 
@@ -197,8 +191,6 @@ public class RegisterActivity extends AppCompatActivity {
                     android.R.layout.simple_list_item_single_choice, labels);
             listHabitats.setAdapter(adapter);
             listHabitats.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-            // MODIFICATION ICI : Appel à sendJoinRequest au lieu de assignHabitat
             listHabitats.setOnItemClickListener((parent, view, position, id) -> {
                 int selectedHabitatId = habitats.get(position).HabitatID;
                 sendJoinRequest(userId, selectedHabitatId, dialog);
@@ -215,8 +207,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         dialog.show();
     }
-
-    // Nouvelle méthode pour envoyer la demande de rejoindre
     private void sendJoinRequest(int userId, int habitatId, AlertDialog dialog) {
         ProgressDialog waiting = new ProgressDialog(this);
         waiting.setMessage("Demande envoyée au propriétaire...\nVous recevrez une notification lorsqu'il répondra.");
