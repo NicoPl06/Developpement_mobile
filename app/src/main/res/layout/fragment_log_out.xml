@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Déconnexion"
+            android:text="@string/log_out"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="@color/settings_text_primary"
@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vous allez quitter votre session PowerHome."
+            android:text="@string/vous_allez_quitter_votre_session_powerhome"
             android:textSize="14sp"
             android:textColor="@color/settings_text_secondary"
             android:gravity="center"
@@ -54,7 +54,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vos éco-coins et réservations sont sauvegardés."
+            android:text="@string/vos_co_coins_et_r_servations_sont_sauvegard_s"
             android:textSize="13sp"
             android:textColor="@color/settings_text_secondary"
             android:gravity="center"
@@ -72,7 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🌿"
+                android:text="@string/logo_eco_coins"
                 android:textSize="22sp"
                 android:layout_marginEnd="12dp" />
 
@@ -85,7 +85,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Votre solde est conservé"
+                    android:text="@string/votre_solde_est_conserv"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="#1B5E20" />
@@ -93,7 +93,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reconnectez-vous pour continuer à cumuler des éco-coins."
+                    android:text="@string/reconnectez_vous_pour_continuer_cumuler_des_co_coins"
                     android:textSize="12sp"
                     android:textColor="#388E3C" />
             </LinearLayout>
@@ -104,7 +104,7 @@
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:text="Se déconnecter"
+            android:text="@string/log_out"
             android:textSize="15sp"
             android:textColor="#FFFFFF"
             app:backgroundTint="#C62828"

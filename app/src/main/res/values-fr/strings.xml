@@ -2,22 +2,24 @@
 <!-- res/values/strings.xml — Français (langue par défaut) -->
 <resources>
 
-    <!-- App -->
+    <!-- ── App ───────────────────────────────────────────────────────────── -->
     <string name="app_name">PowerHome</string>
     <string name="app_name_login">PowerHome</string>
+    <string name="powerhome" translatable="false">PowerHome</string>
 
-    <!-- Navigation drawer -->
+    <!-- ── Navigation drawer ─────────────────────────────────────────────── -->
     <string name="navigation_drawer_open">Ouvrir le menu</string>
     <string name="navigation_drawer_close">Fermer le menu</string>
 
-    <!-- Menu items -->
+    <!-- ── Menu items ────────────────────────────────────────────────────── -->
     <string name="my_home">Mon logement</string>
     <string name="my_habitat">Habitats</string>
     <string name="my_requests">Mes demandes</string>
     <string name="settings">Paramètres</string>
     <string name="log_out">Se déconnecter</string>
+    <string name="gestion_des_habitats">Gestion des habitats</string>
 
-    <!-- Settings — Apparence -->
+    <!-- ── Settings — Apparence ──────────────────────────────────────────── -->
     <string name="apparence">Apparence</string>
     <string name="night_mode">Thème</string>
     <string name="theme">Thème</string>
@@ -31,23 +33,21 @@
     <string name="moins">−</string>
     <string name="less">−</string>
 
-    <!-- Settings — Langue -->
+    <!-- ── Settings — Langue ─────────────────────────────────────────────── -->
     <string name="langue">Langue</string>
     <string name="language_label">Langue de l\'application</string>
 
-    <!-- Settings — Accessibilité -->
+    <!-- ── Settings — Accessibilité ─────────────────────────────────────── -->
     <string name="accessibilit">Accessibilité</string>
     <string name="display_size_label">Taille d\'affichage</string>
     <string name="display_size_small">Petit</string>
     <string name="display_size_normal">Normal</string>
     <string name="display_size_large">Grand</string>
     <string name="display_size_xlarge">Très grand</string>
-
-    <!-- Settings — ancien layout (compatibilité) -->
     <string name="size_text">Taille du texte</string>
     <string name="percent">100%</string>
 
-    <!-- Home fragment -->
+    <!-- ── Home fragment ─────────────────────────────────────────────────── -->
     <string name="info_perso">Informations personnelles</string>
     <string name="name">Nom :</string>
     <string name="Email_2points">Email :</string>
@@ -57,20 +57,20 @@
     <string name="add_appliance">Ajouter un appareil</string>
     <string name="zero_device">Aucun appareil enregistré.</string>
 
-    <!-- Appliance dialog -->
+    <!-- ── Appliance dialog ──────────────────────────────────────────────── -->
     <string name="type_appareil">Type d\'appareil</string>
     <string name="nom_personnalise">Nom personnalisé (optionnel)</string>
     <string name="puissance">Puissance en watts</string>
     <string name="reference_otionnel">Référence (optionnel)</string>
 
-    <!-- Device names -->
+    <!-- ── Device names ──────────────────────────────────────────────────── -->
     <string name="device_default">Appareil</string>
     <string name="device_iron">Fer à repasser</string>
     <string name="device_washing_machine">Machine à laver</string>
     <string name="device_vacuum">Aspirateur</string>
     <string name="device_clim">Climatisation</string>
 
-    <!-- Login -->
+    <!-- ── Login ─────────────────────────────────────────────────────────── -->
     <string name="connectez_vous_banniere">Connectez-vous</string>
     <string name="identifiez_vous">Identifiez-vous</string>
     <string name="email">Email</string>
@@ -82,7 +82,7 @@
     <string name="ou">ou</string>
     <string name="continuer_avec_facebook">Continuer avec Facebook</string>
 
-    <!-- Register -->
+    <!-- ── Register ──────────────────────────────────────────────────────── -->
     <string name="creer_un_compte">Créer un compte</string>
     <string name="creer_un_nouveau_compte">Créer un nouveau compte</string>
     <string name="prenom">Prénom</string>
@@ -90,7 +90,71 @@
     <string name="e_mail">E-mail</string>
     <string name="mobile">Numéro de mobile</string>
 
-    <!-- Phone indicators -->
+    <!-- ── Habitat dialog ───────────────────────────────────────────────── -->
+    <string name="choose_your_habitat">Choisir votre habitat</string>
+    <string name="create_or_join">Créez un nouvel habitat ou rejoignez-en un existant.</string>
+    <string name="create">Créer</string>
+    <string name="join">Rejoindre</string>
+    <string name="aream2">Surface (m²)</string>
+    <string name="ex_of_area" translatable="false">ex : 45.5</string>
+    <string name="ex_floor" translatable="false">ex : 2</string>
+    <string name="create_my_habitat">Créer mon habitat</string>
+    <string name="select_habitat">Sélectionner un habitat :</string>
+    <string name="no_dispo">Aucun habitat disponible pour le moment.</string>
+
+    <!-- ── Calendrier ────────────────────────────────────────────────────── -->
+    <string name="calendar_of_consommation">Calendrier de consommation</string>
+    <string name="zero_eco_coins" translatable="false">0 éco-coins</string>
+    <string name="logo_eco_coins" translatable="false">🌿</string>
+    <string name="_0_30" translatable="false">0–30 %</string>
+    <string name="_30_70" translatable="false">30–70 %</string>
+    <string name="_70_100" translatable="false">70–100 %</string>
+    <string name="r_server">Réserver</string>
+    <string name="_08_00_09_00" translatable="false">08:00 – 09:00</string>
+    <string name="charge_0">Charge : 0 %</string>
+    <string name="_0" translatable="false">0 %</string>
+
+    <!-- ── Dialog réservation ────────────────────────────────────────────── -->
+    <string name="book_slot">Réserver un créneau</string>
+    <string name="_10" translatable="false">+10 🌿</string>
+    <string name="actual_charge">Charge actuelle : 25 %  ✅ Créneau favorable</string>
+    <string name="choose_device">Choisir un appareil :</string>
+    <string name="slot_08h00_09h00" translatable="false">Créneau : 08h00 – 09h00</string>
+
+    <!-- ── Mes réservations ──────────────────────────────────────────────── -->
+    <string name="my_bookings">Mes réservations</string>
+    <string name="solde_eco_coins">Solde éco-coins</string>
+    <string name="zero" translatable="false">0</string>
+    <string name="coins" translatable="false">coins</string>
+    <string name="zero_book">Aucune réservation</string>
+    <string name="logo_calendar" translatable="false">📅</string>
+    <string name="reserv_slot_from_calendar">Réservez un créneau depuis le calendrier</string>
+    <string name="machine_laver">Machine à laver</string>
+    <string name="une_date" translatable="false">Lun. 20 juin · 08:00 – 09:00</string>
+    <string name="wattage" translatable="false">210 W</string>
+    <string name="cancel_book">Annuler la réservation</string>
+
+    <!-- ── Notifications / Demandes ─────────────────────────────────────── -->
+    <string name="My_notifs">Mes notifications</string>
+    <string name="notifications">Notifications</string>
+    <string name="demands">Demandes reçues</string>
+    <string name="zero_notif">Aucune notification</string>
+    <string name="logo_cloche" translatable="false">🔔</string>
+    <string name="logo_home" translatable="false">🏠</string>
+    <string name="jean_dupont" translatable="false">Jean Dupont</string>
+    <string name="question_rejoindre_habitat">souhaite rejoindre votre habitat · Étage 2 · 45 m²</string>
+    <string name="accepter">✓ Accepter</string>
+    <string name="refuser">✕ Refuser</string>
+    <string name="notification_points">Notification…</string>
+    <string name="il_y_a_5_min">Il y a 5 min</string>
+
+    <!-- ── Déconnexion ───────────────────────────────────────────────────── -->
+    <string name="vous_allez_quitter_votre_session_powerhome">Vous allez quitter votre session PowerHome.</string>
+    <string name="vos_co_coins_et_r_servations_sont_sauvegard_s">Vos éco-coins et réservations sont sauvegardés.</string>
+    <string name="votre_solde_est_conserv">Votre solde est conservé.</string>
+    <string name="reconnectez_vous_pour_continuer_cumuler_des_co_coins">Reconnectez-vous pour continuer à cumuler des éco-coins.</string>
+
+    <!-- ── Indicatifs téléphoniques ──────────────────────────────────────── -->
     <string-array name="indicatifs">
         <item>+33 (France)</item>
         <item>+32 (Belgique)</item>
